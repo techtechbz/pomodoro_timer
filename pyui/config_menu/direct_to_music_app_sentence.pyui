@@ -1,0 +1,35 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{10, 6}, {300, 98}}",
+        "class" : "Label",
+        "attributes" : {
+          "font_size" : 18,
+          "frame" : "{{85, 39}, {150, 32}}",
+          "uuid" : "03D2697C-C774-4FCD-90AB-EE55738A26A2",
+          "class" : "Label",
+          "alignment" : "center",
+          "text" : "プレイリストが見つかりませんでした。本アプリを一度閉じ、Apple Musicでプレイリストを作成してから再起動してください。",
+          "number_of_lines" : 0,
+          "name" : "label1",
+          "font_name" : "<System>"
+        },
+        "selected" : true
+      }
+    ],
+    "frame" : "{{0, 0}, {320, 110}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

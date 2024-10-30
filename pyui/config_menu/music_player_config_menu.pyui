@@ -1,0 +1,175 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 160}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "name" : "focus_mode_playlist_name_label",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "プレイリスト名",
+          "font_size" : 18,
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 80}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "音楽を再生",
+          "name" : "will_play_music_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 120}, {160, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "休憩中に音楽を再生",
+          "name" : "will_play_music_on_break_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{230, 80}, {51, 31}}",
+        "class" : "Switch",
+        "attributes" : {
+          "flex" : "",
+          "frame" : "{{145, 225}, {51, 31}}",
+          "value" : false,
+          "class" : "Switch",
+          "name" : "will_play_music_switch",
+          "uuid" : "0D1DD2A9-A73A-430F-99EA-F97EB36CE5FD"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{230, 120}, {51, 31}}",
+        "class" : "Switch",
+        "attributes" : {
+          "flex" : "",
+          "frame" : "{{145, 225}, {51, 31}}",
+          "value" : false,
+          "class" : "Switch",
+          "name" : "will_play_music_on_break_switch",
+          "uuid" : "E8DB1404-6E33-40F9-A973-081987F0FFA1"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 360}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "ランダムモード",
+          "name" : "is_random_mode_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{230, 360}, {51, 31}}",
+        "class" : "Switch",
+        "attributes" : {
+          "uuid" : "E8DB1404-6E33-40F9-A973-081987F0FFA1",
+          "frame" : "{{145, 225}, {51, 31}}",
+          "value" : false,
+          "class" : "Switch",
+          "name" : "is_random_mode_switch",
+          "flex" : ""
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{12, 30}, {160, 40}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "name" : "music_config_label",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "ミュージック",
+          "font_size" : 22,
+          "font_name" : "<System-Bold>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{10, 200}, {320, 150}}",
+        "class" : "ScrollView",
+        "attributes" : {
+          "uuid" : "426DA23E-9410-4A43-860E-157253E46B0F",
+          "frame" : "{{10, 30}, {320, 320}}",
+          "content_height" : 320,
+          "class" : "ScrollView",
+          "name" : "select_playlist_scroll_view",
+          "content_width" : 320
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {340, 440}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

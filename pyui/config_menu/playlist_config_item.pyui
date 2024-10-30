@@ -1,0 +1,55 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 4}, {232, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "border_width" : 0,
+          "font_size" : 18,
+          "frame" : "{{85, 4}, {150, 32}}",
+          "uuid" : "21F5BB60-2523-4F7C-985A-13EFC12307F9",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "playlist name",
+          "corner_radius" : 0,
+          "name" : "playlist_name_label",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{270, 4}, {32, 32}}",
+        "class" : "Button",
+        "attributes" : {
+          "border_width" : 1,
+          "image_name" : "iob:checkmark_32",
+          "frame" : "{{120, 4}, {80, 32}}",
+          "title" : "",
+          "uuid" : "71BDD628-60B0-4D1C-936B-EAD87B31D69D",
+          "class" : "Button",
+          "corner_radius" : 5,
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "name" : "select_button",
+          "font_size" : 15
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {320, 40}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

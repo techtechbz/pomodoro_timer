@@ -1,0 +1,143 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{20, 90}, {230, 200}}",
+        "class" : "Label",
+        "attributes" : {
+          "uuid" : "C1A35CD2-EFF5-4F83-8EDE-6343604FDC92",
+          "flex" : "",
+          "corner_radius" : 0,
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "frame" : "{{225, 224}, {150, 32}}",
+          "border_color" : "RGBA(0.101415,0.101415,0.101415,1.000000)",
+          "border_width" : 1,
+          "alignment" : "center",
+          "text" : "00",
+          "font_name" : "<System>",
+          "class" : "Label",
+          "name" : "minutes",
+          "font_size" : 100
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{260, 100}, {40, 160}}",
+        "class" : "Label",
+        "attributes" : {
+          "font_name" : "<System>",
+          "frame" : "{{225, 224}, {150, 32}}",
+          "uuid" : "C1A35CD2-EFF5-4F83-8EDE-6343604FDC92",
+          "class" : "Label",
+          "alignment" : "center",
+          "text" : ":",
+          "name" : "minute",
+          "font_size" : 80
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{308, 90}, {232, 200}}",
+        "class" : "Label",
+        "attributes" : {
+          "uuid" : "C1A35CD2-EFF5-4F83-8EDE-6343604FDC92",
+          "flex" : "",
+          "corner_radius" : 0,
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "frame" : "{{225, 224}, {150, 32}}",
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "border_width" : 1,
+          "alignment" : "center",
+          "text_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "text" : "00",
+          "font_name" : "<System>",
+          "class" : "Label",
+          "name" : "seconds",
+          "font_size" : 100
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{370, 310}, {150, 100}}",
+        "class" : "Button",
+        "attributes" : {
+          "uuid" : "327A33FE-8D37-40FD-819E-253FF5C7FEF5",
+          "font_size" : 40,
+          "corner_radius" : 50,
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "frame" : "{{260, 224}, {80, 32}}",
+          "border_color" : "RGBA(0.014151,0.014151,0.014151,1.000000)",
+          "border_width" : 1,
+          "title" : "START",
+          "action" : "",
+          "class" : "Button",
+          "name" : "play_timer_button",
+          "flex" : ""
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{40, 310}, {150, 100}}",
+        "class" : "Button",
+        "attributes" : {
+          "action" : "",
+          "border_width" : 1,
+          "flex" : "",
+          "frame" : "{{260, 224}, {80, 32}}",
+          "title" : "CLEAR",
+          "uuid" : "327A33FE-8D37-40FD-819E-253FF5C7FEF5",
+          "class" : "Button",
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "corner_radius" : 50,
+          "name" : "clear_timer_button",
+          "font_size" : 40
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{80, 40}, {400, 40}}",
+        "class" : "Label",
+        "attributes" : {
+          "font_name" : "<System>",
+          "frame" : "{{225, 224}, {150, 32}}",
+          "uuid" : "5C84E839-3A77-47FE-A81F-C18D331B4F3E",
+          "class" : "Label",
+          "alignment" : "center",
+          "text" : "長時間休憩まで残り0回",
+          "font_size" : 22,
+          "name" : "remain_loop_label"
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {560, 440}}",
+    "class" : "View",
+    "attributes" : {
+      "tint_color" : "RGBA(0.000000,0.042840,0.089623,1.000000)",
+      "enabled" : true,
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "ぽもどーろたいまー",
+      "custom_class" : "",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

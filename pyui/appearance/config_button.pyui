@@ -1,0 +1,61 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{10, 10}, {140, 40}}",
+        "class" : "Button",
+        "attributes" : {
+          "uuid" : "4250CFB0-0157-477D-9991-8C9E1E02BC3C",
+          "name" : "launch_music_app_button",
+          "font_size" : 17,
+          "corner_radius" : 10,
+          "background_color" : "RGBA(0.952830,0.952830,0.952830,1.000000)",
+          "frame" : "{{260, 224}, {80, 32}}",
+          "border_width" : 1,
+          "title" : "Apple Music",
+          "font_bold" : true,
+          "class" : "Button",
+          "image_name" : "iob:ios7_musical_notes_32",
+          "flex" : ""
+        },
+        "selected" : true
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{40, 60}, {80, 40}}",
+        "class" : "Button",
+        "attributes" : {
+          "uuid" : "4250CFB0-0157-477D-9991-8C9E1E02BC3C",
+          "name" : "config_button",
+          "font_size" : 17,
+          "corner_radius" : 10,
+          "background_color" : "RGBA(0.959906,0.959906,0.959906,1.000000)",
+          "frame" : "{{260, 224}, {80, 32}}",
+          "border_width" : 1,
+          "title" : "設定",
+          "font_bold" : true,
+          "class" : "Button",
+          "image_name" : "iob:ios7_gear_32",
+          "flex" : ""
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {160, 110}}",
+    "class" : "View",
+    "attributes" : {
+      "custom_class" : "",
+      "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.042840,0.089623,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "ぽもどーろたいまー",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

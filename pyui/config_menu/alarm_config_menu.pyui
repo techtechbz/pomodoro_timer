@@ -1,0 +1,70 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 90}, {90, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "name" : "alarm_name_label",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "アラーム名",
+          "font_size" : 18,
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{123, 90}, {204, 32}}",
+        "class" : "SegmentedControl",
+        "attributes" : {
+          "class" : "SegmentedControl",
+          "frame" : "{{110, 226}, {120, 29}}",
+          "uuid" : "43FAB3BA-6946-4538-9BA4-A8F635E91A07",
+          "segments" : "||",
+          "name" : "alarm_name_segmented_control",
+          "flex" : "LR"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{12, 30}, {160, 40}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System-Bold>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "アラーム",
+          "name" : "music_config_label",
+          "font_size" : 22
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {340, 380}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

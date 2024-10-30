@@ -1,0 +1,58 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{20, 70}, {560, 100}}",
+        "class" : "View",
+        "attributes" : {
+          "frame" : "{{250, 250}, {100, 100}}",
+          "class" : "View",
+          "name" : "displaying_task_view",
+          "uuid" : "0D0ED0E0-96AE-4C19-AB39-3F3252FB555B"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{20, 110}, {560, 440}}",
+        "class" : "View",
+        "attributes" : {
+          "frame" : "{{250, 250}, {100, 100}}",
+          "class" : "View",
+          "name" : "timer_view",
+          "uuid" : "C1A49A4E-B373-460F-B17A-BA7F2FF20EE7"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{220, 415}, {160, 100}}",
+        "class" : "View",
+        "attributes" : {
+          "frame" : "{{250, 250}, {100, 100}}",
+          "class" : "View",
+          "name" : "config_button_view",
+          "uuid" : "5A42E2D2-4325-4277-96F7-9C01970B11E2"
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {600, 600}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

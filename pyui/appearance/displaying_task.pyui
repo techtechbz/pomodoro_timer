@@ -1,0 +1,60 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{20, 10}, {420, 50}}",
+        "class" : "Label",
+        "attributes" : {
+          "border_width" : 1,
+          "font_size" : 22,
+          "text" : "編集ボタンからタスクを設定する",
+          "frame" : "{{225, 224}, {150, 32}}",
+          "class" : "Label",
+          "corner_radius" : 0,
+          "alignment" : "center",
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "uuid" : "5C84E839-3A77-47FE-A81F-C18D331B4F3E",
+          "name" : "task_name_label",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{460, 10}, {80, 50}}",
+        "class" : "Button",
+        "attributes" : {
+          "uuid" : "4250CFB0-0157-477D-9991-8C9E1E02BC3C",
+          "font_size" : 17,
+          "corner_radius" : 10,
+          "background_color" : "RGBA(0.215686,0.478431,1.000000,1.000000)",
+          "frame" : "{{260, 224}, {80, 32}}",
+          "tint_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "border_width" : 1,
+          "title" : "編集",
+          "font_bold" : true,
+          "class" : "Button",
+          "name" : "edit_task_button",
+          "flex" : ""
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {560, 70}}",
+    "class" : "View",
+    "attributes" : {
+      "tint_color" : "RGBA(0.000000,0.042840,0.089623,1.000000)",
+      "enabled" : true,
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "ぽもどーろたいまー",
+      "custom_class" : "",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

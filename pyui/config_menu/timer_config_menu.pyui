@@ -1,0 +1,343 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 220}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 18,
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "タスク時間(分)",
+          "name" : "task_minute_label_label",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 260}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "小休憩時間(分)",
+          "name" : "short_break_minute_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 300}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 18,
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "長休憩時間(分)",
+          "name" : "long_break_minute_label",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 340}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "ループ回数(回)",
+          "font_size" : 18,
+          "name" : "loop_times_label"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{192, 220}, {130, 32}}",
+        "class" : "TextField",
+        "attributes" : {
+          "uuid" : "22527F9E-632D-40E7-854C-823411CAFB4D",
+          "font_size" : 17,
+          "frame" : "{{60, 224}, {200, 32}}",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "text" : "",
+          "placeholder" : "",
+          "font_name" : "<System>",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "name" : "task_minutes_input",
+          "flex" : ""
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{192, 260}, {130, 32}}",
+        "class" : "TextField",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 17,
+          "frame" : "{{60, 224}, {200, 32}}",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "uuid" : "22527F9E-632D-40E7-854C-823411CAFB4D",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "name" : "short_break_minutes_input",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{192, 300}, {130, 32}}",
+        "class" : "TextField",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 17,
+          "frame" : "{{60, 224}, {200, 32}}",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "uuid" : "22527F9E-632D-40E7-854C-823411CAFB4D",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "name" : "long_break_minutes_input",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{192, 340}, {130, 32}}",
+        "class" : "TextField",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 17,
+          "frame" : "{{60, 224}, {200, 32}}",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "uuid" : "22527F9E-632D-40E7-854C-823411CAFB4D",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "name" : "loop_times_input",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{12, 30}, {160, 40}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System-Bold>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "タイマー",
+          "font_size" : 22,
+          "name" : "timer_config_label"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 380}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "name" : "will_count_label",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "カウント",
+          "font_size" : 18,
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 420}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "name" : "count_seconds_label",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "カウント(秒)",
+          "font_size" : 18,
+          "font_name" : "<System>"
+        },
+        "selected" : true
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{230, 380}, {51, 31}}",
+        "class" : "Switch",
+        "attributes" : {
+          "uuid" : "0D1DD2A9-A73A-430F-99EA-F97EB36CE5FD",
+          "frame" : "{{145, 225}, {51, 31}}",
+          "value" : false,
+          "class" : "Switch",
+          "name" : "will_count_switch",
+          "flex" : ""
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{192, 420}, {130, 32}}",
+        "class" : "TextField",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{60, 224}, {200, 32}}",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "uuid" : "22527F9E-632D-40E7-854C-823411CAFB4D",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "font_size" : 17,
+          "name" : "count_seconds_input"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{10, 125}, {320, 40}}",
+        "class" : "SegmentedControl",
+        "attributes" : {
+          "name" : "timer_preset_segmented_control",
+          "frame" : "{{110, 226}, {120, 29}}",
+          "flex" : "LR",
+          "class" : "SegmentedControl",
+          "segments" : "1|2|3|4|5",
+          "uuid" : "43FAB3BA-6946-4538-9BA4-A8F635E91A07"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 85}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "プリセット",
+          "font_size" : 18,
+          "name" : "task_minute_label_label"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 180}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "プリセット名",
+          "name" : "preset_name_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{192, 180}, {130, 32}}",
+        "class" : "TextField",
+        "attributes" : {
+          "uuid" : "22527F9E-632D-40E7-854C-823411CAFB4D",
+          "flex" : "",
+          "frame" : "{{60, 224}, {200, 32}}",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "text" : "",
+          "placeholder" : "",
+          "font_name" : "<System>",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "name" : "preset_name_input",
+          "font_size" : 17
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {340, 520}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

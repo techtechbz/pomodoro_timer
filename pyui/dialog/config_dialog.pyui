@@ -1,0 +1,133 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{0, 0}, {340, 600}}",
+        "class" : "NavigationView",
+        "attributes" : {
+          "border_width" : 1,
+          "title_bar_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
+          "frame" : "{{10, 80}, {320, 320}}",
+          "title_color" : "RGBA(0.254902,0.254902,0.254902,1.000000)",
+          "uuid" : "A1BC9979-9AB7-49DC-A272-94AD02EA808D",
+          "class" : "NavigationView",
+          "corner_radius" : 0,
+          "root_view_name" : "設定画面",
+          "name" : "config_navigation"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{0, 110}, {340, 380}}",
+        "class" : "ScrollView",
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{10, 80}, {320, 320}}",
+          "uuid" : "FB43EA2B-8BBA-4967-BBD4-59165D0AC0EC",
+          "content_height" : 320,
+          "class" : "ScrollView",
+          "content_width" : 320,
+          "corner_radius" : 0,
+          "name" : "config_menu_scroll"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{12, 520}, {100, 44}}",
+        "class" : "Button",
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{130, 224}, {80, 32}}",
+          "tint_color" : "RGBA(0.254902,0.254902,0.254902,1.000000)",
+          "title" : "キャンセル",
+          "uuid" : "850B8DCB-9AEE-4F0D-8943-EAB06D2378DA",
+          "class" : "Button",
+          "corner_radius" : 10,
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "font_bold" : true,
+          "name" : "cancel_configuration_button",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{228, 520}, {100, 44}}",
+        "class" : "Button",
+        "attributes" : {
+          "uuid" : "850B8DCB-9AEE-4F0D-8943-EAB06D2378DA",
+          "corner_radius" : 10,
+          "background_color" : "RGBA(0.218750,0.479167,1.000000,1.000000)",
+          "frame" : "{{130, 224}, {80, 32}}",
+          "tint_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "border_width" : 1,
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "title" : "保存",
+          "font_bold" : true,
+          "class" : "Button",
+          "name" : "save_config_button",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{120, 520}, {100, 44}}",
+        "class" : "Button",
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{130, 224}, {80, 32}}",
+          "tint_color" : "RGBA(0.254902,0.254902,0.254902,1.000000)",
+          "title" : "デフォルト",
+          "uuid" : "850B8DCB-9AEE-4F0D-8943-EAB06D2378DA",
+          "class" : "Button",
+          "corner_radius" : 10,
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "font_bold" : true,
+          "name" : "set_default_button",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{20, 58}, {300, 40}}",
+        "class" : "SegmentedControl",
+        "attributes" : {
+          "segments" : "タイマー|タスク|アラーム|音楽",
+          "frame" : "{{110, 286}, {120, 29}}",
+          "uuid" : "64B084DE-91BF-44FE-9745-84DE22DAB201",
+          "name" : "select_item_segmented_control",
+          "class" : "SegmentedControl",
+          "flex" : "LR"
+        },
+        "selected" : true
+      }
+    ],
+    "frame" : "{{0, 0}, {340, 600}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

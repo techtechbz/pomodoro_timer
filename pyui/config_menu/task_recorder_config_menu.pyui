@@ -1,0 +1,204 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 240}, {160, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 18,
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "記録を保存する場所",
+          "name" : "save_file_path_label",
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 80}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "タスクを記録する",
+          "font_size" : 18,
+          "name" : "will_record_task_label"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 160}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "ファイル形式",
+          "font_size" : 18,
+          "name" : "file_format_label"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{230, 80}, {51, 31}}",
+        "class" : "Switch",
+        "attributes" : {
+          "flex" : "",
+          "frame" : "{{145, 225}, {51, 31}}",
+          "value" : false,
+          "class" : "Switch",
+          "name" : "will_record_task_switch",
+          "uuid" : "0D1DD2A9-A73A-430F-99EA-F97EB36CE5FD"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{12, 30}, {180, 40}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 22,
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "タスクレコーダー",
+          "name" : "task_recorder_label",
+          "font_name" : "<System-Bold>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{80, 200}, {240, 32}}",
+        "class" : "SegmentedControl",
+        "attributes" : {
+          "segments" : "csv|markdown|両方",
+          "frame" : "{{110, 226}, {120, 29}}",
+          "flex" : "LR",
+          "name" : "file_format_segmented_control",
+          "class" : "SegmentedControl",
+          "uuid" : "43FAB3BA-6946-4538-9BA4-A8F635E91A07"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 120}, {160, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "name" : "will_record_break_label",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "休憩時間を記録する",
+          "font_size" : 18,
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{230, 120}, {51, 31}}",
+        "class" : "Switch",
+        "attributes" : {
+          "uuid" : "0D1DD2A9-A73A-430F-99EA-F97EB36CE5FD",
+          "frame" : "{{145, 225}, {51, 31}}",
+          "value" : false,
+          "class" : "Switch",
+          "name" : "will_record_break_switch",
+          "flex" : ""
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{120, 370}, {200, 32}}",
+        "class" : "Button",
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{130, 174}, {80, 32}}",
+          "tint_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "title" : "オススメの場所を設定する",
+          "uuid" : "C6A13E98-B22A-4AE9-91E0-6CC3ECFDC048",
+          "background_color" : "RGBA(0.215686,0.478431,1.000000,1.000000)",
+          "class" : "Button",
+          "corner_radius" : 5,
+          "font_bold" : true,
+          "name" : "suggest_save_file_path_button",
+          "font_size" : 15
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{30, 280}, {280, 80}}",
+        "class" : "TextView",
+        "attributes" : {
+          "uuid" : "CF028889-14D6-4D7F-9D74-B3FCB570700E",
+          "font_size" : 17,
+          "corner_radius" : 5,
+          "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "frame" : "{{70, 160}, {200, 200}}",
+          "editable" : true,
+          "border_width" : 1,
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "font_name" : "<System>",
+          "spellchecking_type" : "default",
+          "class" : "TextView",
+          "name" : "save_file_path_input",
+          "flex" : ""
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {340, 480}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "name" : "",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

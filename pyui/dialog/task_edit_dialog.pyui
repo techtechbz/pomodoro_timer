@@ -1,0 +1,95 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{0, 0}, {340, 200}}",
+        "class" : "NavigationView",
+        "attributes" : {
+          "title_bar_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
+          "frame" : "{{10, 40}, {320, 320}}",
+          "title_color" : "RGBA(0.33, 0.33, 0.33, 1.0)",
+          "uuid" : "9EEB684E-860E-4754-A141-264525ABAB1D",
+          "class" : "NavigationView",
+          "root_view_name" : "タスク編集画面",
+          "name" : "task_edit_navigation_view"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{200, 140}, {100, 44}}",
+        "class" : "Button",
+        "attributes" : {
+          "uuid" : "850B8DCB-9AEE-4F0D-8943-EAB06D2378DA",
+          "corner_radius" : 10,
+          "background_color" : "RGBA(0.218750,0.479167,1.000000,1.000000)",
+          "frame" : "{{130, 224}, {80, 32}}",
+          "tint_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "border_width" : 1,
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "title" : "保存",
+          "font_bold" : true,
+          "class" : "Button",
+          "name" : "save_edition_button",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{40, 140}, {100, 44}}",
+        "class" : "Button",
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{130, 224}, {80, 32}}",
+          "tint_color" : "RGBA(0.254902,0.254902,0.254902,1.000000)",
+          "title" : "キャンセル",
+          "uuid" : "850B8DCB-9AEE-4F0D-8943-EAB06D2378DA",
+          "class" : "Button",
+          "corner_radius" : 10,
+          "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+          "font_bold" : true,
+          "name" : "cancel_edition_button",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{30, 60}, {280, 60}}",
+        "class" : "TextField",
+        "attributes" : {
+          "name" : "task_name_field",
+          "frame" : "{{70, 84}, {200, 32}}",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "uuid" : "CE45B577-C754-405E-BDFB-5B2355F6EE51",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "font_size" : 17,
+          "font_name" : "<System>"
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {340, 200}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "nodes" : [
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{0, 0}, {240, 160}}",
+        "class" : "View",
+        "attributes" : {
+          "border_width" : 0,
+          "frame" : "{{70, 40}, {100, 100}}",
+          "class" : "View",
+          "corner_radius" : 30,
+          "background_color" : "RGBA(0.254717,0.254717,0.254717,1.000000)",
+          "uuid" : "5847915E-76FF-4D4C-9DB2-4E10B257D9ED",
+          "name" : "alert_frame"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{-1, 90}, {121, 70}}",
+        "class" : "Button",
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{80, 74}, {80, 32}}",
+          "title" : "Cancel",
+          "uuid" : "E922BCB8-DE47-4033-BB87-423C78BC5867",
+          "font_bold" : true,
+          "class" : "Button",
+          "corner_radius" : 0,
+          "border_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "name" : "cancel_button",
+          "font_size" : 20
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{119, 90}, {122, 70}}",
+        "class" : "Button",
+        "attributes" : {
+          "border_width" : 1,
+          "frame" : "{{80, 74}, {80, 32}}",
+          "title" : "OK",
+          "uuid" : "E922BCB8-DE47-4033-BB87-423C78BC5867",
+          "font_bold" : true,
+          "class" : "Button",
+          "corner_radius" : 0,
+          "border_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "name" : "ok_button",
+          "font_size" : 20
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{0, 0}, {240, 90}}",
+        "class" : "Label",
+        "attributes" : {
+          "uuid" : "FD4BB1A7-BA46-4283-A456-5F3493C223E6",
+          "corner_radius" : 0,
+          "frame" : "{{45, 74}, {150, 32}}",
+          "border_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "border_width" : 0,
+          "alignment" : "center",
+          "text_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+          "text" : "確認",
+          "font_name" : "<System-Bold>",
+          "class" : "Label",
+          "name" : "alert_title",
+          "font_size" : 20
+        },
+        "selected" : false
+      }
+    ],
+    "frame" : "{{0, 0}, {240, 160}}",
+    "class" : "View",
+    "attributes" : {
+      "enabled" : true,
+      "tint_color" : "RGBA(0.309804,0.541176,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
+      "flex" : ""
+    },
+    "selected" : false
+  }
+]
