@@ -76,5 +76,7 @@ class TaskEditController:
         self.__task_edit_dialog_manager.enable_view()
 
     def interrupt_edit(self, _=None) -> None:
+        current_task_name = self.__displaying_task_view_manager.get_current_task_name()
+        self.__task_edit_dialog_manager.set_previous_task_name(current_task_name)
         self.__alert_controller.close_choice_alert()
         self.close_task_edit_dialog()

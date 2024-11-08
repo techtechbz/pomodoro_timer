@@ -64,3 +64,4 @@ class TimerSoundEffect:
 			self.__thread.start()
 			del self.__thread
 			self.__thread = None
+

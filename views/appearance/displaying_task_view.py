@@ -11,5 +11,8 @@ class DisplayingTaskViewManager:
     def set_edit_task_action(self, edit_task_action):
         self.__view_instance["edit_task_button"].action = edit_task_action
 
-    def update_task_name_label(self, task_name):
+    def get_current_task_name(self) -> str:
+        return self.__view_instance['task_name_label'].text
+
+    def update_task_name_label(self, task_name: str) -> None:
         self.__view_instance["task_name_label"].text = task_name

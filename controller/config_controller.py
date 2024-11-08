@@ -36,6 +36,9 @@ class ConfigurationController:
     def get_saved_config(self) -> Optional[AppConfig]:
         return self.__config
 
+    def get_preset_name(self) -> str:
+        return self.__config.get_preset_name()
+
     def get_config_button_view_instance(self):
         return self.__config_button_view_manager.get_view_instance()
 
@@ -66,12 +69,6 @@ class ConfigurationController:
             self.show_checking_to_set_default_alert()
         elif sender['title'] == 'interrupt':
             self.show_checking_to_cancel_alert()
-
-    def get_timer_config(self) -> tuple[TimerConfig, AlarmConfig, str]:
-        timer_config = self.__config.get_specified_timer_config_preset()
-        alarm_config = self.__config.get_alarm_config()
-        preset_name = self.__config.get_preset_name()
-        return timer_config, alarm_config, preset_name
 
     def get_validation_error_message(self) -> str:
         return f"現在の設定では、タイマーを正常に起動できません。\n設定画面より再設定を行なってください。" \

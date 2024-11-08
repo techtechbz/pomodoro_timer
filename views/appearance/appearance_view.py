@@ -21,9 +21,11 @@ class AppearanceViewManager:
 			scale_factor = frame_width / self.__view_instance.width
 		self.__view_instance.transform = ui.Transform.scale(scale_factor, scale_factor)
 
-	def display_subview(self, displaying_task_view_instance, timer_view_instance, config_button_view_instance) -> None:
-		self.__view_instance['displaying_task_view'].add_subview(displaying_task_view_instance)
+	def add_timer_subview_instance(self, timer_view_instance) -> None:
 		self.__view_instance['timer_view'].add_subview(timer_view_instance)
+
+	def add_open_dialog_subview_instance(self, displaying_task_view_instance, config_button_view_instance) -> None:
+		self.__view_instance['displaying_task_view'].add_subview(displaying_task_view_instance)
 		self.__view_instance['config_button_view'].add_subview(config_button_view_instance)
 
 	def change_to_focus_mode(self) -> None:
