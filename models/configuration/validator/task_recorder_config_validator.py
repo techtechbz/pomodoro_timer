@@ -1,6 +1,6 @@
 import os
 
-from models.task_recorder import FileFormat
+from models.task_recorder.file_parser import FileFormat
 from models.configuration.validator.validation_status import ValidationStatus
 
 

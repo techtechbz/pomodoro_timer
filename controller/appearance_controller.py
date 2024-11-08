@@ -11,10 +11,13 @@ class AppearanceController:
     def get_appearance_instance(self):
         return self.__appearance_manager.get_view_instance()
 
-    def display_appearance(self, displaying_task_view_instance, timer_view_instance,
-                           config_button_view_instance) -> None:
-        self.__appearance_manager.display_subview(displaying_task_view_instance, timer_view_instance,
-                                                  config_button_view_instance)
+    def add_timer_subview_instance(self, timer_view_instance) -> None:
+        self.__appearance_manager.add_timer_subview_instance(timer_view_instance)
+
+    def add_open_dialog_subview_instance(self, displaying_task_view_instance, config_button_view_instance) -> None:
+        self.__appearance_manager.add_open_dialog_subview_instance(
+            displaying_task_view_instance, config_button_view_instance
+        )
 
     def change_background_for_focus_mode(self) -> None:
         self.__appearance_manager.change_to_focus_mode()
