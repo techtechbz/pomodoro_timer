@@ -1,7 +1,7 @@
 import os
 import ui
 
-from models.task_recorder import FileFormat
+from models.task_recorder.file_parser import FileFormat
 
 
 class TaskRecorderConfigMenuHandler:
