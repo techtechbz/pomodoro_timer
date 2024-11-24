@@ -5,12 +5,11 @@ from models.configuration.validator.validation_status import ValidationStatus
 
 
 class TaskRecorderConfigValidator:
-    def __init__(self):
-        self.__partical_status = ValidationStatus.unverified
+    def __init__(self) -> None:
         self.__status = ValidationStatus.unverified
         self.__message = ""
 
-    def file_path_validation(self, save_file_path):
+    def file_path_validation(self, save_file_path: str) -> None:
         if save_file_path == "":
             self.__message = "・ディレクトリ: ディレクトリが指定されていません。"
             self.__status = ValidationStatus.error
@@ -18,7 +17,7 @@ class TaskRecorderConfigValidator:
             self.__message = "・ディレクトリ: ディレクトリが見つかりませんでした。"
             self.__status = ValidationStatus.error
 
-    def file_format_index_validation(self, file_format_index):
+    def file_format_index_validation(self, file_format_index: int) -> None:
         try:
             _ = FileFormat(file_format_index)
         except ValueError:
@@ -42,5 +41,5 @@ class TaskRecorderConfigValidator:
     def return_validation_result(self):
         return self.__status, self.__message
 
-    def is_valid_settings(self):
+    def is_valid_settings(self) -> bool:
         return self.__status == ValidationStatus.success

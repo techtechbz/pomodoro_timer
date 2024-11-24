@@ -1,3 +1,5 @@
+import ui
+
 from views.appearance.appearance_view import AppearanceViewManager
 
 
@@ -8,10 +10,10 @@ class AppearanceController:
     def sizing(self, frame_width: int, frame_height: int) -> None:
         self.__appearance_manager.sizing(frame_width, frame_height)
 
-    def get_appearance_instance(self):
+    def get_appearance_instance(self) -> ui.View:
         return self.__appearance_manager.get_view_instance()
 
-    def add_timer_subview_instance(self, timer_view_instance) -> None:
+    def add_timer_subview_instance(self, timer_view_instance: ui.View) -> None:
         self.__appearance_manager.add_timer_subview_instance(timer_view_instance)
 
     def add_open_dialog_subview_instance(self, displaying_task_view_instance, config_button_view_instance) -> None:
@@ -28,12 +30,12 @@ class AppearanceController:
     def reset_background(self) -> None:
         self.__appearance_manager.reset()
 
-    def enable_view(self):
+    def enable_view(self) -> None:
         self.get_appearance_instance().touch_enabled = True
         self.__appearance_manager.switch_view_enabled(True)
         self.get_appearance_instance().alpha = 1.0
 
-    def disable_view(self):
+    def disable_view(self) -> None:
         self.get_appearance_instance().touch_enabled = False
         self.__appearance_manager.switch_view_enabled(False)
         self.get_appearance_instance().alpha = 0.2
