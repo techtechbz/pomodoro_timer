@@ -5,7 +5,7 @@ from views.dialog.choice_alert_view import ChoiceAlertManager
 
 
 class AlertController:
-    def __init__(self, frame_width: int, frame_height: int, add_subview, remove_subview):
+    def __init__(self, frame_width: int, frame_height: int, add_subview, remove_subview) -> None:
         self.__choice_alert_manager = ChoiceAlertManager()
         self.adjust_position(frame_width, frame_height)
         self.add_subview = add_subview
@@ -21,14 +21,14 @@ class AlertController:
     def is_displayed_alert(self) -> bool:
         return self.__is_displayed_alert
 
-    def adjust_position(self, frame_width, frame_height):
+    def adjust_position(self, frame_width, frame_height) -> None:
         self.__choice_alert_manager.adjust_position(frame_width, frame_height)
 
     @ui.in_background
     def show_message_alert(self, text: str) -> None:
         console.alert(text, button1="OK", hide_cancel_button=True)
 
-    def show_choice_alert(self, title: str, ok_action, cancel_action=None):
+    def show_choice_alert(self, title: str, ok_action, cancel_action=None) -> None:
         self.__is_displayed_alert = True
         self.__choice_alert_manager.set_title(title)
         self.__choice_alert_manager.set_ok_action(ok_action)

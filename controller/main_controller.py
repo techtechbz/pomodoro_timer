@@ -5,13 +5,14 @@ from controller.alert_controller import AlertController
 from controller.appearance_controller import AppearanceController
 from controller.config_controller import ConfigurationController
 from controller.task_edit_controller import TaskEditController
-from controller.ux_controller import UXController
+from controller.timer_controller import TimerController
 from controller.key_command import CommandCategory, KeyCommand
+from custom_types.command import Command, CommandList
 from models.configuration.config_class.app_config import AppConfig
 
 
 class MainController(ui.View):
-    def __init__(self):
+    def __init__(self) -> None:
         self.name = "ポモドーロタイマー"
         self.__key_command: Final[KeyCommand] = KeyCommand()
         # 画面レイアウト設定
@@ -25,12 +26,12 @@ class MainController(ui.View):
             alert_controller=self.__alert_controller, get_open_dialog_method=self.get_open_dialog_method,
             get_close_dialog_method=self.get_close_dialog_method, apply_renewal_config=self.apply_renewal_config
         )
-        config = self.__config_controller.get_saved_config()
-        self.__ux_controller = UXController(config, self.__appearance_controller, self.show_validation_error_message)
+        self.__timer_controller = TimerController(self.__config_controller.get_saved_config(),
+                                                  self.__appearance_controller, self.show_validation_error_message)
         self.__task_edit_controller: TaskEditController = TaskEditController(
             alert_controller=self.__alert_controller, get_open_dialog_method=self.get_open_dialog_method,
             get_close_dialog_method=self.get_close_dialog_method,
-            set_recording_task_name=self.__ux_controller.set_recording_task_name
+            set_recording_task_name=self.__timer_controller.set_recording_task_name
         )
 
     def launch_app(self) -> None:
@@ -50,17 +51,17 @@ class MainController(ui.View):
         self.__config_controller.sizing(frame_width, frame_height)
         self.__task_edit_controller.sizing(frame_width, frame_height)
     
-    def keyboard_frame_will_change(self, frame) -> None:
+    def keyboard_frame_will_change(self, frame: tuple[float, float, float, float]) -> None:
         padding_of_keyboard = self.height - frame[3]
         if self.__config_controller is not None:
             self.__config_controller.adjust_layout_for_keyboard_height(padding_of_keyboard)
         if self.__task_edit_controller is not None:
             self.__task_edit_controller.adjust_layout_for_keyboard_height(padding_of_keyboard)
 
-    def get_key_commands(self) -> list[dict[str, str]]:
+    def get_key_commands(self) -> CommandList:
         return self.__key_command.get_key_commands_list()
 
-    def key_command(self, sender: dict[str, str]) -> None:
+    def key_command(self, sender: Command) -> None:
         command_category = self.__key_command.categorize_command(sender)
         if command_category == CommandCategory.config or self.__config_controller.is_displaying_dialog():
             self.__config_controller.execute_command(sender)
@@ -69,26 +70,26 @@ class MainController(ui.View):
             self.__task_edit_controller.execute_command(sender)
             return
         if command_category == CommandCategory.timer:
-            self.__ux_controller.execute_command(sender)
+            self.__timer_controller.execute_command(sender)
         if command_category == CommandCategory.preset:
             self.apply_timer_preset_config(int(sender['input']) - 1)
 
     def will_close(self) -> None:
-        self.__ux_controller.reset_ux()
-        del self.__ux_controller
+        self.__timer_controller.reset()
+        del self.__timer_controller
         del self.__appearance_controller
         del self.__alert_controller
         del self.__config_controller
         del self.__task_edit_controller
 
-    def get_open_dialog_method(self, view_instance) -> Callable[[], None]:
+    def get_open_dialog_method(self, view_instance: ui.View) -> Callable[[], None]:
         def open_dialog() -> None:
             self.__appearance_controller.disable_view()
-            self.__ux_controller.stop_timer()
+            self.__timer_controller.stop_timer()
             self.add_subview(view_instance)
         return open_dialog
 
-    def get_close_dialog_method(self, view_instance) -> Callable[[], None]:
+    def get_close_dialog_method(self, view_instance: ui.View) -> Callable[[], None]:
         def close_dialog() -> None:
             self.__appearance_controller.enable_view()
             self.remove_subview(view_instance)
@@ -97,13 +98,16 @@ class MainController(ui.View):
     def apply_timer_preset_config(self, preset_index: int) -> None:
         self.__config_controller.change_timer_preset(preset_index)
         preset_name = self.__config_controller.get_preset_name()
-        self.__ux_controller.apply_timer_config(self.__config_controller.get_saved_config())
+        changed_config = self.__config_controller.get_saved_config()
+        self.__timer_controller.apply_renewal_timer_config(
+            changed_config.get_specified_timer_config_preset(), changed_config.get_alarm_config()
+        )
         self.__alert_controller.show_message_alert(f"プリセット『{preset_name}』に変更しました!")
 
     def apply_renewal_config(self, config: AppConfig, alert_message: str) -> None:
-        self.__ux_controller.apply_renewal_config(config)
+        self.__timer_controller.apply_renewal_config(config)
         self.__alert_controller.show_message_alert(alert_message)
 
-    def show_validation_error_message(self):
+    def show_validation_error_message(self) -> None:
         alert_message = self.__config_controller.get_validation_error_message()
         self.__alert_controller.show_message_alert(alert_message)

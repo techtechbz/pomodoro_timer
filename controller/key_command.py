@@ -1,6 +1,7 @@
 from enum import Enum, auto
 from typing import Final
 
+from custom_types.command import CommandList
 
 class CommandCategory(Enum):
     timer = auto()
@@ -13,7 +14,7 @@ class CommandCategory(Enum):
 
 class KeyCommand:
     def __init__(self) -> None:
-        self.__key_commands_list: Final[list[dict[str, str]]] = [
+        self.__key_commands_list: Final[CommandList] = [
             # timer
             {'input': 'P', 'modifiers': 'cmd', 'title': 'play'},
             {'input': '\b', 'modifiers': 'cmd', 'title': 'clear'},
@@ -36,7 +37,7 @@ class KeyCommand:
             {'input': '5', 'modifiers': 'cmd', 'title': 'preset'},
         ]
 
-    def get_key_commands_list(self) -> list[dict[str, str]]:
+    def get_key_commands_list(self) -> CommandList:
         return self.__key_commands_list
 
     @staticmethod

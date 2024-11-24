@@ -1,13 +1,15 @@
+from typing import Optional
+
 from models.configuration.validator.validation_status import ValidationStatus
 
 
 class TimerConfigValidator:
-    def __init__(self):
+    def __init__(self) -> None:
         self.__partial_status = ValidationStatus.unverified
         self.__status = ValidationStatus.unverified
         self.__message = ""
 
-    def preset_name_validator(self, preset_num, input_name):
+    def preset_name_validator(self, preset_num: int, input_name: str) -> Optional[str]:
         input_len = len(input_name)
         if 1 <= input_len <= 50:
             return input_name
@@ -18,7 +20,8 @@ class TimerConfigValidator:
         self.__message += f"プリセット名(プリセット{preset_num}): 1~50文字以内で入力してください。"
         return None
 
-    def input_value_validator(self, field_name, input_value, max_value, will_warn=False):
+    def input_value_validator(self, field_name: str, input_value: str, max_value: int, will_warn=False) \
+            -> Optional[int]:
         try:
             value = int(input_value)
             if not all((value >= 1, value <= max_value)):
@@ -32,7 +35,7 @@ class TimerConfigValidator:
             self.__message += f'・{field_name}: 1~{max_value}までの数字で指定してください。'
             return None
 
-    def update_status(self):
+    def update_status(self) -> None:
         if self.__partial_status.value > self.__status.value:
             self.__status = self.__partial_status
         self.__partial_status = ValidationStatus.unverified
@@ -77,5 +80,5 @@ class TimerConfigValidator:
     def return_validation_result(self):
         return self.__status, self.__message
 
-    def is_valid_settings(self):
+    def is_valid_settings(self) -> bool:
         return self.__status == ValidationStatus.success

@@ -1,9 +1,9 @@
 from objc_util import nsurl, UIApplication
 from typing import Any, Callable, Final, Optional
+import ui
 
 from controller.alert_controller import AlertController
-from models.configuration.config_class.timer_config import TimerConfig
-from models.configuration.config_class.alarm_config import AlarmConfig
+from custom_types.command import Command
 from models.configuration.config_provider import AppConfig, ConfigProvider
 from views.appearance.config_button_view import ConfigButtonViewManager
 from views.dialog.config_dialog_view import ConfigDialogViewManager
@@ -27,10 +27,10 @@ class ConfigurationController:
         self.__config_button_view_manager.set_button_action(self.launch_music_app, self.open_config_dialog)
         self.__is_displaying_dialog = False
 
-    def sizing(self, frame_width, frame_height) -> None:
+    def sizing(self, frame_width: float, frame_height: float) -> None:
         self.__config_dialog_view_manager.sizing(frame_width, frame_height)
 
-    def adjust_layout_for_keyboard_height(self, padding_of_keyboard: int) -> None:
+    def adjust_layout_for_keyboard_height(self, padding_of_keyboard: float) -> None:
         self.__config_dialog_view_manager.adjust_layout_for_keyboard_height(padding_of_keyboard)
 
     def get_saved_config(self) -> Optional[AppConfig]:
@@ -39,22 +39,22 @@ class ConfigurationController:
     def get_preset_name(self) -> str:
         return self.__config.get_preset_name()
 
-    def get_config_button_view_instance(self):
+    def get_config_button_view_instance(self) -> ui.View:
         return self.__config_button_view_manager.get_view_instance()
 
-    def is_displaying_dialog(self):
+    def is_displaying_dialog(self) -> bool:
         return self.__is_displaying_dialog
 
-    def open_config_dialog(self, _=None):
+    def open_config_dialog(self, _=None) -> None:
         self.open_dialog()
         self.__is_displaying_dialog = True
 
-    def close_config_dialog(self):
+    def close_config_dialog(self) -> None:
         self.close_dialog()
         self.__is_displaying_dialog = False
         self.__config_dialog_view_manager.enable_view()
 
-    def execute_command(self, sender) -> None:
+    def execute_command(self, sender: Command) -> None:
         if sender['title'] == 'music':
             self.launch_music_app()
         if sender['title'] == 'config':
@@ -74,7 +74,7 @@ class ConfigurationController:
         return f"現在の設定では、タイマーを正常に起動できません。\n設定画面より再設定を行なってください。" \
                f"\n\n{self.__config_provider.get_alert_message()}"
 
-    def change_timer_preset(self, preset_index: int):
+    def change_timer_preset(self, preset_index: int) -> None:
         self.__config.set_preset_index(preset_index)
         self.__config_provider.replace_config(self.__config)
 
@@ -117,6 +117,6 @@ class ConfigurationController:
         self.cancel()
         self.__alert_controller.show_message_alert("設定をデフォルトに戻しました!")
 
-    def interrupt_configuration(self, _=None):
+    def interrupt_configuration(self, _=None) -> None:
         self.__alert_controller.close_choice_alert()
         self.close_config_dialog()
