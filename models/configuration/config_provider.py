@@ -7,8 +7,8 @@ from models.configuration.validator.app_config_validator import AppConfigValidat
 
 
 class ConfigProvider:
-	def __init__(self):
-		self.__alert_message = ""
+	def __init__(self) -> None:
+		self.__alert_message: str = ""
 		self.__validator: Final[AppConfigValidator] = AppConfigValidator()
 		self.__ini_file_parser: Final[IniFileParser] = IniFileParser()
 	
@@ -45,6 +45,6 @@ class ConfigProvider:
 
 		return AppConfig(**validated_settings)
 
-	def replace_config(self, config: AppConfig):
+	def replace_config(self, config: AppConfig) -> None:
 		settings = config.get_all_settings()
 		self.__ini_file_parser.save_changed_settings(**settings)

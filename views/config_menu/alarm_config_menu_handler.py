@@ -4,11 +4,11 @@ from models.sound.sound_effect import AlarmName
 
 
 class AlarmConfigMenuHandler:
-	def __init__(self, current_alarm_settings):
+	def __init__(self, current_alarm_settings) -> None:
 		self.__alarm_config_view_class = ui.load_view("./pyui/config_menu/alarm_config_menu.pyui")
 		self.__current_alarm_settings = current_alarm_settings
 		
-	def get_view_instance(self):
+	def get_view_instance(self) -> ui.View:
 		return self.__alarm_config_view_class
 	
 	def reset_settings(self, alarm_settings):

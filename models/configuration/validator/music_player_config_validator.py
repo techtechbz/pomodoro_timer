@@ -5,10 +5,11 @@ from models.configuration.validator.validation_status import ValidationStatus
 
 class MusicPlayerConfigValidator:
     def __init__(self):
-        self.__status = ValidationStatus.unverified
-        self.__message = ""
+        self.__status: ValidationStatus = ValidationStatus.unverified
+        self.__message: str = ""
 
-    def validation(self, will_play_music, will_play_music_on_break, playlist_name, is_random_mode):
+    def validation(self, will_play_music: bool, will_play_music_on_break: bool, playlist_name: str,
+                   is_random_mode: bool):
         self.__status = ValidationStatus.unverified
         self.__message = ""
         if will_play_music or will_play_music_on_break:
@@ -30,7 +31,7 @@ class MusicPlayerConfigValidator:
                 "is_random_mode": is_random_mode}
 
     @staticmethod
-    def get_playlist(playlist_name):
+    def get_playlist(playlist_name: str):
         collections = ObjCClass('MPMediaQuery').playlistsQuery().collections()
         for playlist in collections:
             if str(playlist.valueForKey_("name")) == playlist_name:
@@ -40,5 +41,5 @@ class MusicPlayerConfigValidator:
     def return_validation_result(self):
         return self.__status, self.__message
 
-    def is_valid_settings(self):
+    def is_valid_settings(self) -> bool:
         return self.__status == ValidationStatus.success
