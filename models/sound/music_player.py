@@ -43,8 +43,8 @@ class MusicPlayer:
 		self.__player.play()
 
 	def restart_music(self, on_break: bool) -> None:
-		if (on_break and self.__settings["will_play_music_on_break"]) or \
-				(not on_break and self.__settings["will_play_music"]):
+		if (on_break and not self.__settings["will_play_music_on_break"]) or \
+				not (on_break and self.__settings["will_play_music"]):
 			return
 		self.__player.play()
 	
