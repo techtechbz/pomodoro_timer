@@ -76,6 +76,8 @@ class TimerController:
         self.__ux_controller.start_task(self.__timer.on_break())
 
     def stop_timer(self) -> None:
+        if self.__timer is None:
+            return
         self.__timer.stop_timer()
         self.__timer_view_manager.change_play_timer_button_title("START")
         self.__ux_controller.interrupt_task()
