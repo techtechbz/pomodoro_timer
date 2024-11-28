@@ -40,8 +40,7 @@ class PomodoroTimer:
 
     def apply_renewal_config(self, timer_config, alarm_config) -> None:
         updated_timer_settings = timer_config.get_settings()
-        if self.__timer_settings != updated_timer_settings:
-            self.__timer_settings = updated_timer_settings
+        self.__timer_settings = updated_timer_settings
         self.__se.apply_renewal_config(alarm_config)
 
     def update_remain_loop(self, remain_loop) -> None:
@@ -101,7 +100,8 @@ class PomodoroTimer:
         if self.__remain_minutes == 0 and self.__remain_seconds == 0:
             self.switch_mode()
             self.__se.play_alarm()
-        self.__se.play_se(self.__remain_minutes, self.__remain_seconds)
+        else:
+            self.__se.play_se(self.__remain_minutes, self.__remain_seconds)
         try:
             self.advance_timer()
         except StopSignal:

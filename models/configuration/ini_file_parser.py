@@ -62,7 +62,11 @@ class IniFileParser:
         }
 
     def get_saved_alarm_settings(self) -> AlarmSettings:
-        return {"alarm_index": self.__configparser.getint(self.__alarm_config_section, "alarm_index")}
+        return {
+            "alarm_index": self.__configparser.getint(self.__alarm_config_section, "alarm_index"),
+            "will_notice": self.__configparser.getboolean(self.__alarm_config_section, "will_notice"),
+            "notice_seconds": self.__configparser.getint(self.__alarm_config_section, "notice_seconds")
+        }
 
     def get_saved_music_player_settings(self) -> MusicPlayerSettings:
         return {

@@ -23,7 +23,11 @@ class DefaultSettings:
 			"file_format_index": 0,
 			"save_file_path": ""
 		}
-		self.__default_alarm_settings: Final[AlarmSettings] = {"alarm_index": 0}
+		self.__default_alarm_settings: Final[AlarmSettings] = {
+			"alarm_index": 0,
+			"will_notice": False,
+			"notice_seconds": 0
+		}
 		self.__default_music_player_settings: Final[MusicPlayerSettings] = {
 			"will_play_music": False,
 			"will_play_music_on_break": False,
