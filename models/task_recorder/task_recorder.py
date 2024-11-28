@@ -147,7 +147,9 @@ class TaskRecorder:
         previous_total_working_seconds, previous_total_break_seconds = 0, 0
         integrated_task_record_list = []
 
-        if len(previous_task_record) >= 2:
+        if not previous_task_record:
+            integrated_task_record_list += [current_task_data]
+        else:
             previous_total_task_record = previous_task_record[-1]
             last_task_record = previous_task_record[-2]
             previous_total_working_seconds = self.__datetime_formatter.format_time_to_seconds(

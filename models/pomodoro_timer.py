@@ -18,12 +18,12 @@ class PomodoroTimer:
                  change_ux_to_focus_mode, change_ux_to_break_mode) -> None:
         self.__timer_settings = timer_config.get_settings()
         self.__se = TimerSoundEffect(alarm_config)
-        self.__timer_view_manager = timer_view_manager
+        self.__view_manager = timer_view_manager
+        self.__remain_minutes = 0
+        self.__remain_seconds = 0
         self.change_ux_to_focus_mode = change_ux_to_focus_mode
         self.change_ux_to_break_mode = change_ux_to_break_mode
         self.__remain_loop = 0
-        self.__remain_minutes = 0
-        self.__remain_seconds = 0
         self.__is_called_stopping_signal = False
         self.__on_pomodoro_process: bool = False
         self.__on_break: bool = True
@@ -40,40 +40,34 @@ class PomodoroTimer:
 
     def apply_renewal_config(self, timer_config, alarm_config) -> None:
         updated_timer_settings = timer_config.get_settings()
-        if self.__timer_settings != updated_timer_settings:
-            self.__timer_settings = updated_timer_settings
+        self.__timer_settings = updated_timer_settings
         self.__se.apply_renewal_config(alarm_config)
-
-    def update_minutes(self, minutes) -> None:
-        self.__remain_minutes = minutes
-        self.__timer_view_manager.update_displayed_minutes(self.__remain_minutes)
-
-    def update_seconds(self, seconds) -> None:
-        self.__remain_seconds = seconds
-        self.__timer_view_manager.update_displayed_seconds(self.__remain_seconds)
 
     def update_remain_loop(self, remain_loop) -> None:
         self.__remain_loop = remain_loop
-        self.__timer_view_manager.update_remain_loop_label(self.__remain_loop)
+        self.__view_manager.update_remain_loop_label(self.__remain_loop)
 
-    def set_time(self, minutes, seconds) -> None:
-        self.update_minutes(minutes)
-        self.update_seconds(seconds)
+    def count_time(self) -> None:
+        if self.__remain_seconds == 0:
+            if self.__remain_minutes >= 1:
+                self.__remain_minutes -= 1
+                self.__remain_seconds = 59
+                self.__view_manager.update_displayed_minutes(self.__remain_minutes)
+        else:
+            self.__remain_seconds -= 1
+        self.__view_manager.update_displayed_seconds(self.__remain_seconds)
 
-    def countdown(self) -> None:
-        for remain_minutes in range(self.__remain_minutes, -1, -1):
-            self.update_minutes(remain_minutes)
-            for remain_seconds in range(self.__remain_seconds, -1, -1):
-                self.update_seconds(remain_seconds)
-                if remain_minutes == 0:
-                    if remain_seconds == 0:
-                        return
-                    elif remain_seconds <= 3:
-                        self.__se.countdown_sound()
-                time.sleep(1)
-                if self.__is_called_stopping_signal:
-                    raise StopSignal()
-            self.__remain_seconds = 59
+    def advance_timer(self) -> None:
+        time.sleep(1)
+        if self.__is_called_stopping_signal:
+            raise StopSignal()
+        self.count_time()
+
+    def set_time(self, minutes: int, seconds: int) -> None:
+        self.__remain_minutes = minutes
+        self.__remain_seconds = seconds
+        self.__view_manager.update_displayed_minutes(minutes)
+        self.__view_manager.update_displayed_seconds(seconds)
 
     def change_to_prepare_mode(self) -> None:
         count_minutes = self.__timer_settings["count_seconds"] // 60
@@ -104,10 +98,12 @@ class PomodoroTimer:
 
     def continue_pomodoro_cycle(self) -> None:
         if self.__remain_minutes == 0 and self.__remain_seconds == 0:
-            self.__se.play_alarm()
             self.switch_mode()
+            self.__se.play_alarm()
+        else:
+            self.__se.play_se(self.__remain_minutes, self.__remain_seconds)
         try:
-            self.countdown()
+            self.advance_timer()
         except StopSignal:
             return
         self.continue_pomodoro_cycle()

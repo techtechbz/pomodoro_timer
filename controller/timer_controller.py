@@ -37,6 +37,7 @@ class TimerController:
         self.__ux_controller = UXController(task_recorder_config, music_player_config)
 
     def apply_renewal_timer_config(self, timer_config: TimerConfig, alarm_config: AlarmConfig) -> None:
+        self.reset()
         self.__timer.apply_renewal_config(timer_config, alarm_config)
 
     def apply_renewal_config(self, config: Optional[AppConfig]) -> None:
@@ -76,6 +77,8 @@ class TimerController:
         self.__ux_controller.start_task(self.__timer.on_break())
 
     def stop_timer(self) -> None:
+        if self.__timer is None:
+            return
         self.__timer.stop_timer()
         self.__timer_view_manager.change_play_timer_button_title("START")
         self.__ux_controller.interrupt_task()

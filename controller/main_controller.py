@@ -108,6 +108,6 @@ class MainController(ui.View):
         self.__timer_controller.apply_renewal_config(config)
         self.__alert_controller.show_message_alert(alert_message)
 
-    def show_validation_error_message(self) -> None:
+    def show_validation_error_message(self, _=None) -> None:
         alert_message = self.__config_controller.get_validation_error_message()
         self.__alert_controller.show_message_alert(alert_message)
