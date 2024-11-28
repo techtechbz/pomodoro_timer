@@ -42,8 +42,8 @@ class TimerController:
     def apply_renewal_config(self, config: Optional[AppConfig]) -> None:
         if config is None:
             return
-        self.reset()
 
+        self.reset()
         timer_config = config.get_specified_timer_config_preset()
         alarm_config = config.get_alarm_config()
         task_recorder_config = config.get_task_recorder_config()

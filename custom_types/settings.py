@@ -27,7 +27,11 @@ TimerSettingsList = list[TimerSettings]
 
 TimerInputsList = list[TimerInputs]
 
-AlarmSettings = TypedDict('AlarmSettings', {'alarm_index': int})
+AlarmSettings = TypedDict('AlarmSettings', {
+    'alarm_index': int,
+    'will_notice': bool,
+    'notice_seconds': int
+})
 
 TaskRecorderSettings = TypedDict('TaskRecorderSettings', {
     "will_record_task": bool,
