@@ -214,7 +214,7 @@
           "font_size" : 18,
           "font_name" : "<System>"
         },
-        "selected" : true
+        "selected" : false
       },
       {
         "nodes" : [
@@ -259,11 +259,11 @@
         "frame" : "{{10, 125}, {320, 40}}",
         "class" : "SegmentedControl",
         "attributes" : {
-          "name" : "timer_preset_segmented_control",
+          "segments" : "1|2|3|4|5",
           "frame" : "{{110, 226}, {120, 29}}",
           "flex" : "LR",
+          "name" : "timer_preset_segmented_control",
           "class" : "SegmentedControl",
-          "segments" : "1|2|3|4|5",
           "uuid" : "43FAB3BA-6946-4538-9BA4-A8F635E91A07"
         },
         "selected" : false

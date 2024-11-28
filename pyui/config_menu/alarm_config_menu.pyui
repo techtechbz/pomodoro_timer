@@ -54,6 +54,80 @@
           "font_size" : 22
         },
         "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 130}, {174, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "終了前に通知する",
+          "name" : "will_notice_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{230, 130}, {51, 31}}",
+        "class" : "Switch",
+        "attributes" : {
+          "flex" : "",
+          "frame" : "{{145, 225}, {51, 31}}",
+          "value" : false,
+          "class" : "Switch",
+          "name" : "will_notice_switch",
+          "uuid" : "0D1DD2A9-A73A-430F-99EA-F97EB36CE5FD"
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 170}, {150, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "通知(秒前)",
+          "name" : "notice_seconds_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{192, 170}, {130, 32}}",
+        "class" : "TextField",
+        "attributes" : {
+          "flex" : "",
+          "font_size" : 17,
+          "frame" : "{{60, 224}, {200, 32}}",
+          "spellchecking_type" : "default",
+          "class" : "TextField",
+          "uuid" : "22527F9E-632D-40E7-854C-823411CAFB4D",
+          "alignment" : "left",
+          "autocorrection_type" : "default",
+          "name" : "notice_seconds_input",
+          "font_name" : "<System>"
+        },
+        "selected" : false
       }
     ],
     "frame" : "{{0, 0}, {340, 380}}",
