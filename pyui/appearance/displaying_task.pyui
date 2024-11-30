@@ -10,13 +10,13 @@
         "attributes" : {
           "border_width" : 1,
           "font_size" : 22,
-          "text" : "編集ボタンからタスクを設定する",
+          "uuid" : "5C84E839-3A77-47FE-A81F-C18D331B4F3E",
           "frame" : "{{225, 224}, {150, 32}}",
           "class" : "Label",
+          "text" : "",
           "corner_radius" : 0,
           "alignment" : "center",
           "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
-          "uuid" : "5C84E839-3A77-47FE-A81F-C18D331B4F3E",
           "name" : "task_name_label",
           "font_name" : "<System>"
         },
@@ -48,11 +48,11 @@
     "frame" : "{{0, 0}, {560, 70}}",
     "class" : "View",
     "attributes" : {
-      "tint_color" : "RGBA(0.000000,0.042840,0.089623,1.000000)",
+      "custom_class" : "",
       "enabled" : true,
+      "tint_color" : "RGBA(0.000000,0.042840,0.089623,1.000000)",
       "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)",
       "name" : "ぽもどーろたいまー",
-      "custom_class" : "",
       "flex" : ""
     },
     "selected" : false

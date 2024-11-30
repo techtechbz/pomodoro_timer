@@ -1,12 +1,14 @@
+from typing import Final, Optional
 import ui
 
+from custom_types.settings import AlarmSettings
 from models.sound.sound_effect import AlarmName
 
 
 class AlarmConfigMenuHandler:
-	def __init__(self, current_alarm_settings) -> None:
-		self.__alarm_config_view_class = ui.load_view("./pyui/config_menu/alarm_config_menu.pyui")
-		self.__current_alarm_settings = current_alarm_settings
+	def __init__(self) -> None:
+		self.__alarm_config_view_class: Final[ui.View] = ui.load_view("./pyui/config_menu/alarm_config_menu.pyui")
+		self.__current_alarm_settings: Optional[AlarmSettings] = None
 		self.__alarm_config_view_class["notice_seconds_input"].keyboard_type = ui.KEYBOARD_NUMBERS
 
 	def get_view_instance(self) -> ui.View:

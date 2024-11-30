@@ -16,11 +16,24 @@ class AlarmName(Enum):
 		return list(map(lambda member: member.name, cls))
 
 
-class AlarmPlayer:
-	def __init__(self, alarm_index: int):
-		self.__alarm_index = alarm_index
+class TimerSoundEffect:
+	def __init__(self, config: AlarmConfig) -> None:
+		settings = config.get_settings()
+		self.__alarm_index = settings['alarm_index']
+		self.__notice_time = self.calculate_notice_time(settings)
 		self.__thread = None
-		self.define_playing_thread()
+
+	def apply_renewal_config(self, config: AlarmConfig) -> None:
+		updated_settings = config.get_settings()
+		self.__alarm_index = updated_settings['alarm_index']
+		self.__notice_time = self.calculate_notice_time(updated_settings)
+
+	@staticmethod
+	def calculate_notice_time(settings) -> tuple[int, int]:
+		if settings['will_notice']:
+			return settings['notice_seconds'] // 60, settings['notice_seconds'] % 60
+		else:
+			return -1, -1
 
 	@staticmethod
 	def play_default_alarm() -> None:
@@ -45,81 +58,37 @@ class AlarmPlayer:
 		else:
 			return self.play_piano_alarm
 
-	def define_playing_thread(self):
-		self.__thread = Thread(target=self.get_alarm())
-	
-	def set_alarm(self, alarm_index: int) -> None:
-		self.__alarm_index = alarm_index
-		self.define_playing_thread()
-
-	def play(self) -> None:
+	def play_thread(self):
 		self.__thread.start()
 		del self.__thread
-		self.define_playing_thread()
-
-
-class NotificationSoundPlayer:
-	def __init__(self):
 		self.__thread = None
-		self.define_playing_thread()
-
-	@staticmethod
-	def play_alarm() -> None:
-		play_effect('piano:D3')
-		sleep(0.08)
-		play_effect('piano:F3#')
-
-	def define_playing_thread(self):
-		self.__thread = Thread(target=self.play_alarm)
-
-	def play(self) -> None:
-		self.__thread.start()
-		del self.__thread
-		self.define_playing_thread()
-
-
-class CountDownPlayer:
-	def __init__(self):
-		self.__countdown_se_tag = 'ui:switch27'
-		self.__thread = None
-		self.define_playing_thread()
-
-	def define_playing_thread(self):
-		self.__thread = Thread(target=play_effect, args=(self.__countdown_se_tag,))
 	
-	def play(self) -> None:
-		self.__thread.start()
-		del self.__thread
-		self.define_playing_thread()
-
-
-class TimerSoundEffect:
-	def __init__(self, config: AlarmConfig) -> None:
-		self.__settings = config.get_settings()
-		self.__alarm_player = AlarmPlayer(self.__settings['alarm_index'])
-		self.__notification_sound_player = NotificationSoundPlayer()
-		self.__countdown_player = CountDownPlayer()
-		self.__notification_minutes = 0
-		self.__notification_seconds = 0
-		self.calculate_notification_time()
-
-	def apply_renewal_config(self, config: AlarmConfig) -> None:
-		updated_settings = config.get_settings()
-		if self.__settings != updated_settings:
-			self.__settings = updated_settings
-			self.__alarm_player.set_alarm(self.__settings['alarm_index'])
-			self.calculate_notification_time()
-
-	def calculate_notification_time(self):
-		self.__notification_minutes = self.__settings['notice_seconds'] // 60
-		self.__notification_seconds = self.__settings['notice_seconds'] % 60
-
 	def play_alarm(self):
-		self.__alarm_player.play()
+		if self.__thread is not None:
+			print('thread is alive.')
+			print(self.__thread)
+			return
+		self.__thread = Thread(target=self.get_alarm())
+		self.play_thread()
 
-	def play_se(self, minutes: int, seconds: int) -> None:
-		if self.__settings['will_notice'] and minutes == self.__notification_minutes \
-				and seconds == self.__notification_seconds:
-			self.__notification_sound_player.play()
-		elif minutes == 0 and seconds <= 3:
-			self.__countdown_player.play()
+	def play_notification(self):
+		if self.__thread is not None:
+			print('thread is alive.')
+			print(self.__thread)
+			return
+		self.__thread = Thread(target=self.play_default_alarm)
+		self.play_thread()
+
+	def play_countdown(self) -> None:
+		if self.__thread is not None:
+			print('thread is alive.')
+			print(self.__thread)
+			return
+		self.__thread = Thread(target=play_effect, args=('ui:switch27',))
+		self.play_thread()
+
+	def play_se(self, minute: int, second: int) -> None:
+		if minute == 0 and second <= 3:
+			self.play_countdown()
+		if minute == self.__notice_time[0] and second == self.__notice_time[1]:
+			self.play_notification()

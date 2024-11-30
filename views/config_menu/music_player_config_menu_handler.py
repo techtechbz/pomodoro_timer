@@ -1,5 +1,5 @@
 from objc_util import ObjCClass
-from typing import Final
+from typing import Final, Optional
 import ui
 
 from custom_types.appearance import ColorCode
@@ -84,13 +84,13 @@ class PlaylistConfigRadioGroupHandler:
         self.__available_playlist = self.get_available_playlist()
         self.__selected_playlist_name = self.choice_playlist_name(saved_playlist_name)
 
-    def choice_playlist_name(self, saved_playlist_name) -> str:
+    def get_selected_playlist_name(self) -> str:
+        return self.__selected_playlist_name
+
+    def choice_playlist_name(self, saved_playlist_name: str) -> str:
         if saved_playlist_name in self.__available_playlist.keys():
             return saved_playlist_name
         return ""
-
-    def get_selected_playlist_name(self) -> str:
-        return self.__selected_playlist_name
 
     @staticmethod
     def get_playlist_config_item_name(order: int) -> str:
@@ -152,12 +152,12 @@ class PlaylistConfigRadioGroupHandler:
 
 
 class MusicPlayerConfigMenuHandler:
-    def __init__(self, current_music_player_settings: MusicPlayerSettings) -> None:
+    def __init__(self) -> None:
         self.__view_instance = ui.load_view("./pyui/config_menu/music_player_config_menu.pyui")
-        self.__current_music_player_settings = current_music_player_settings
+        self.__current_music_player_settings: Optional[ui.View] = None
         self.__playlist_config_group_ratio_handler = PlaylistConfigRadioGroupHandler(
             self.__view_instance["select_playlist_scroll_view"],
-            self.__current_music_player_settings["playlist_name"]
+            ""
         )
         self.__playlist_config_group_ratio_handler.insert_scroll_view_contents()
 

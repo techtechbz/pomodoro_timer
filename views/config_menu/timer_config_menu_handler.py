@@ -4,12 +4,12 @@ from custom_types.settings import TimerSettingsList, TimerInputsList
 
 
 class TimerConfigMenuHandler:
-	def __init__(self, current_preset_index: int, current_timer_settings_list: TimerSettingsList) -> None:
+	def __init__(self, total_preset_number: int) -> None:
 		self.__timer_config_view_class = ui.load_view("./pyui/config_menu/timer_config_menu.pyui")
-		self.__current_preset_index = current_preset_index
-		self.__current_timer_settings_list = current_timer_settings_list
+		self.__current_preset_index = 0
+		self.__current_timer_settings_list = None
 		self.__timer_config_view_class["timer_preset_segmented_control"].segments = \
-			[str(i + 1) for i in range(len(current_timer_settings_list))]
+			[str(i + 1) for i in range(total_preset_number)]
 		self.__timer_config_view_class["timer_preset_segmented_control"].action = self.switch_preset
 		self.set_textfield_keyboard()
 	
@@ -22,7 +22,7 @@ class TimerConfigMenuHandler:
 	
 	def get_view_instance(self) -> ui.View:
 		return self.__timer_config_view_class
-		
+
 	def reset_settings(self, preset_index: int, timer_settings_list: TimerSettingsList) -> None:
 		self.__current_preset_index = preset_index
 		self.__current_timer_settings_list = timer_settings_list

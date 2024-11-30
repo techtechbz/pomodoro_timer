@@ -1,5 +1,5 @@
+from typing import Final, Optional
 import os
-from typing import Final
 import ui
 
 from custom_types.settings import TaskRecorderSettings
@@ -7,10 +7,10 @@ from models.task_recorder.file_parser import FileFormat
 
 
 class TaskRecorderConfigMenuHandler:
-	def __init__(self, current_task_recorder_settings: TaskRecorderSettings):
+	def __init__(self):
 		self.__task_recorder_config_view_class: Final[ui.View] = \
 			ui.load_view("./pyui/config_menu/task_recorder_config_menu.pyui")
-		self.__current_task_recorder_settings = current_task_recorder_settings
+		self.__current_task_recorder_settings: Optional[TaskRecorderSettings] = None
 		self.__task_recorder_config_view_class["suggest_save_file_path_button"].action = self.suggest_file_path
 
 	def get_view_instance(self) -> ui.View:

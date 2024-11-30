@@ -4,7 +4,7 @@ import ui
 from typing import Final, Optional
 
 from custom_types.settings import AppSettingsInputs
-from models.configuration.config_class.app_config import AppConfig
+from models.configuration.config_class.app_config import AppConfig, AppSettings
 from models.configuration.default_settings import DefaultSettings
 from views.config_menu.timer_config_menu_handler import TimerConfigMenuHandler
 from views.config_menu.task_recorder_config_menu_handler import TaskRecorderConfigMenuHandler
@@ -24,23 +24,22 @@ class ConfigurationItem(Enum):
 
 
 class ScrollMenuHandler:
-    def __init__(self, config: Optional[AppConfig]) -> None:
+    def __init__(self) -> None:
         self.__default_settings: Final[DefaultSettings] = DefaultSettings()
-        if config is None:
-            all_settings = self.__default_settings.get_default_settings()
-        else:
-            all_settings = config.get_all_settings()
-        preset_index = all_settings["preset_index_settings"]["preset_index"]
         self.__timer_config_menu_handler: Final[TimerConfigMenuHandler] = TimerConfigMenuHandler(
-            preset_index, all_settings["timer_settings_list"]
+            self.__default_settings.get_total_preset_number()
         )
-        self.__task_recorder_config_menu_handler: Final[TaskRecorderConfigMenuHandler] = \
-            TaskRecorderConfigMenuHandler(all_settings["task_recorder_settings"])
-        self.__alarm_config_menu_handler: Final[AlarmConfigMenuHandler] = \
-            AlarmConfigMenuHandler(all_settings["alarm_settings"])
-        self.__music_player_config_menu_handler: Final[MusicPlayerConfigMenuHandler] = \
-            MusicPlayerConfigMenuHandler(all_settings["music_player_settings"])
+        self.__task_recorder_config_menu_handler: Final[TaskRecorderConfigMenuHandler] = TaskRecorderConfigMenuHandler()
+        self.__alarm_config_menu_handler: Final[AlarmConfigMenuHandler] = AlarmConfigMenuHandler()
+        self.__music_player_config_menu_handler: Final[MusicPlayerConfigMenuHandler] = MusicPlayerConfigMenuHandler()
         self.__current_menu_handler = self.__timer_config_menu_handler
+
+    def apply_current_settings(self, settings: AppSettings):
+        preset_index = settings["preset_index_settings"]["preset_index"]
+        self.__timer_config_menu_handler.reset_settings(preset_index, settings["timer_settings_list"])
+        self.__task_recorder_config_menu_handler.reset_settings(settings["task_recorder_settings"])
+        self.__alarm_config_menu_handler.reset_settings(settings["alarm_settings"])
+        self.__music_player_config_menu_handler.reset_settings(settings["music_player_settings"])
         self.__current_menu_handler.insert_field_text()
 
     def change_current_menu_handler(self, configuration_item: ConfigurationItem) -> None:
@@ -102,9 +101,9 @@ class ScrollMenuHandler:
 
 
 class ConfigDialogViewManager:
-    def __init__(self, config: Optional[AppConfig]) -> None:
-        self.__view_instance = ui.load_view("./pyui/dialog/config_dialog.pyui")
-        self.__scroll_menu_handler = ScrollMenuHandler(config)
+    def __init__(self) -> None:
+        self.__view_instance: Final[ui.View] = ui.load_view("./pyui/dialog/config_dialog.pyui")
+        self.__scroll_menu_handler: Final[ScrollMenuHandler] = ScrollMenuHandler()
         self.__scale_factor = 1
         self.initiate_segmented_control()
         self.__view_instance["select_item_segmented_control"].action = self.swipe_scroll_config_menu
@@ -112,8 +111,11 @@ class ConfigDialogViewManager:
     def get_view_instance(self) -> ui.View:
         return self.__view_instance
 
-    def set_scroll_config_menu(self, configuration_item: ConfigurationItem) -> None:
-        self.__scroll_menu_handler.change_current_menu_handler(configuration_item)
+    def apply_current_config(self, config: AppConfig) -> None:
+        settings = config.get_all_settings()
+        self.__scroll_menu_handler.apply_current_settings(settings)
+
+    def display_scroll_menu(self) -> None:
         self.__view_instance["config_menu_scroll"].content_size = self.__scroll_menu_handler.get_scroll_view_size()
         self.__view_instance["config_menu_scroll"].add_subview(
             self.__scroll_menu_handler.get_scroll_menu_view_instance()
@@ -123,14 +125,15 @@ class ConfigDialogViewManager:
         initial_configuration_item = ConfigurationItem.タイマー
         self.__view_instance["select_item_segmented_control"].segments = ConfigurationItem.get_configuration_item_list()
         self.__view_instance["select_item_segmented_control"].selected_index = initial_configuration_item.value
-        self.set_scroll_config_menu(initial_configuration_item)
+        self.display_scroll_menu()
 
     def swipe_scroll_config_menu(self, _=None) -> None:
         self.__view_instance["config_menu_scroll"].remove_subview(
             self.__scroll_menu_handler.get_scroll_menu_view_instance()
         )
         config_item_index = self.__view_instance["select_item_segmented_control"].selected_index
-        self.set_scroll_config_menu(ConfigurationItem(config_item_index))
+        self.__scroll_menu_handler.change_current_menu_handler(ConfigurationItem(config_item_index))
+        self.display_scroll_menu()
 
     def set_default_settings_inputs(self) -> None:
         self.__scroll_menu_handler.set_default_settings_inputs()
