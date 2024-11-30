@@ -17,7 +17,7 @@ class ConfigurationController:
         self.apply_renewal_config = apply_renewal_config
         self.__config_provider: Final[ConfigProvider] = ConfigProvider()
         self.__config: Optional[AppConfig] = self.__config_provider.get_saved_config()
-        self.__config_dialog_view_manager: Final[ConfigDialogViewManager] = ConfigDialogViewManager(self.__config)
+        self.__config_dialog_view_manager: Final[ConfigDialogViewManager] = ConfigDialogViewManager()
         self.__config_dialog_view_manager.set_button_action(self.show_checking_to_save_config_alert,
                                                             self.show_checking_to_set_default_alert,
                                                             self.show_checking_to_cancel_alert)
@@ -46,6 +46,7 @@ class ConfigurationController:
         return self.__is_displaying_dialog
 
     def open_config_dialog(self, _=None) -> None:
+        self.__config_dialog_view_manager.apply_current_config(self.__config)
         self.open_dialog()
         self.__is_displaying_dialog = True
 
