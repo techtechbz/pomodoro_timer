@@ -47,21 +47,20 @@ class PomodoroTimer:
         self.__remain_loop = remain_loop
         self.__view_manager.update_remain_loop_label(self.__remain_loop)
 
-    def count_time(self) -> None:
-        if self.__remain_seconds == 0:
-            if self.__remain_minutes >= 1:
-                self.__remain_minutes -= 1
-                self.__remain_seconds = 59
-                self.__view_manager.update_displayed_minutes(self.__remain_minutes)
-        else:
-            self.__remain_seconds -= 1
-        self.__view_manager.update_displayed_seconds(self.__remain_seconds)
-
-    def advance_timer(self) -> None:
-        time.sleep(1)
-        if self.__is_called_stopping_signal:
-            raise StopSignal()
-        self.count_time()
+    def countdown(self):
+        for minute in range(self.__remain_minutes, -1, -1):
+            self.__view_manager.update_displayed_minutes(minute)
+            for second in range(self.__remain_seconds, -1, -1):
+                self.__view_manager.update_displayed_seconds(second)
+                if minute == 0 and second == 0:
+                    return
+                self.__se.play_se(minute, second)
+                time.sleep(1)
+                if self.__is_called_stopping_signal:
+                    self.__remain_minutes = minute
+                    self.__remain_seconds = second
+                    raise StopSignal()
+            self.__remain_seconds = 59
 
     def set_time(self, minutes: int, seconds: int) -> None:
         self.__remain_minutes = minutes
@@ -97,15 +96,12 @@ class PomodoroTimer:
             self.change_to_break_mode()
 
     def continue_pomodoro_cycle(self) -> None:
-        if self.__remain_minutes == 0 and self.__remain_seconds == 0:
-            self.switch_mode()
-            self.__se.play_alarm()
-        else:
-            self.__se.play_se(self.__remain_minutes, self.__remain_seconds)
         try:
-            self.advance_timer()
+            self.countdown()
         except StopSignal:
             return
+        self.switch_mode()
+        self.__se.play_alarm()
         self.continue_pomodoro_cycle()
 
     def start_pomodoro_process(self) -> None:
