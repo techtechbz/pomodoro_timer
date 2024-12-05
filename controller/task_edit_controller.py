@@ -1,5 +1,5 @@
 import ui
-from typing import Any, Callable, Final
+from typing import Callable, Final
 
 from controller.alert_controller import AlertController
 from custom_types.command import Command
@@ -8,8 +8,9 @@ from views.appearance.displaying_task_view import DisplayingTaskViewManager
 
 
 class TaskEditController:
-    def __init__(self, alert_controller: AlertController, get_open_dialog_method: Callable[[Any], Callable[[], None]],
-                 get_close_dialog_method: Callable[[Any], Callable[[], None]],
+    def __init__(self, alert_controller: AlertController,
+                 get_open_dialog_method: Callable[[ui.View], Callable[[], None]],
+                 get_close_dialog_method: Callable[[ui.View], Callable[[], None]],
                  set_recording_task_name: Callable[[str], None]) -> None:
         self.__alert_controller: Final[AlertController] = alert_controller
         self.set_recording_task_name = set_recording_task_name
