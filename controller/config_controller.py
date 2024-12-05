@@ -1,5 +1,5 @@
 from objc_util import nsurl, UIApplication
-from typing import Any, Callable, Final, Optional
+from typing import Callable, Final, Optional
 import ui
 
 from controller.alert_controller import AlertController
@@ -10,8 +10,10 @@ from views.dialog.config_dialog_view import ConfigDialogViewManager
 
 
 class ConfigurationController:
-    def __init__(self, alert_controller: AlertController, get_open_dialog_method: Callable[[Any], Callable[[], None]],
-                 get_close_dialog_method: Callable[[Any], Callable[[], None]], apply_renewal_config):
+    def __init__(self, alert_controller: AlertController,
+                 get_open_dialog_method: Callable[[ui.View], Callable[[], None]],
+                 get_close_dialog_method: Callable[[ui.View], Callable[[], None]],
+                 apply_renewal_config: Callable[[AppConfig, str], None]) -> None:
         # 設定項目を取得する
         self.__alert_controller: Final[AlertController] = alert_controller
         self.apply_renewal_config = apply_renewal_config

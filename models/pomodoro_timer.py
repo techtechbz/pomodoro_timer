@@ -39,9 +39,11 @@ class PomodoroTimer:
         return self.__on_break
 
     def apply_renewal_config(self, timer_config, alarm_config) -> None:
-        updated_timer_settings = timer_config.get_settings()
-        self.__timer_settings = updated_timer_settings
         self.__se.apply_renewal_config(alarm_config)
+        updated_timer_settings = timer_config.get_settings()
+        if self.__timer_settings != updated_timer_settings:
+            self.__timer_settings = updated_timer_settings
+            self.clear()
 
     def update_remain_loop(self, remain_loop) -> None:
         self.__remain_loop = remain_loop
