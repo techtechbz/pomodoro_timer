@@ -11,14 +11,6 @@ class TimerConfigMenuHandler:
 		self.__timer_config_view_class["timer_preset_segmented_control"].segments = \
 			[str(i + 1) for i in range(total_preset_number)]
 		self.__timer_config_view_class["timer_preset_segmented_control"].action = self.switch_preset
-		self.set_textfield_keyboard()
-	
-	def set_textfield_keyboard(self) -> None:
-		self.__timer_config_view_class["task_minutes_input"].keyboard_type = ui.KEYBOARD_NUMBERS
-		self.__timer_config_view_class["short_break_minutes_input"].keyboard_type = ui.KEYBOARD_NUMBERS
-		self.__timer_config_view_class["long_break_minutes_input"].keyboard_type = ui.KEYBOARD_NUMBERS
-		self.__timer_config_view_class["loop_times_input"].keyboard_type = ui.KEYBOARD_NUMBERS
-		self.__timer_config_view_class["count_seconds_input"].keyboard_type = ui.KEYBOARD_NUMBERS
 	
 	def get_view_instance(self) -> ui.View:
 		return self.__timer_config_view_class
@@ -31,15 +23,20 @@ class TimerConfigMenuHandler:
 	def write_out_field_inputs(self) -> None:
 		previous_preset_index = self.__current_preset_index
 		self.__current_preset_index = self.__timer_config_view_class["timer_preset_segmented_control"].selected_index
-		self.__current_timer_settings_list[previous_preset_index] = {
-			"preset_name": self.__timer_config_view_class["preset_name_input"].text,
-			"task_minutes": self.__timer_config_view_class["task_minutes_input"].text,
-			"short_break_minutes": self.__timer_config_view_class["short_break_minutes_input"].text, 
-			"long_break_minutes": self.__timer_config_view_class["long_break_minutes_input"].text,
-			"loop_times": self.__timer_config_view_class["loop_times_input"].text,
-			"will_count": self.__timer_config_view_class["will_count_switch"].value,
-			"count_seconds": self.__timer_config_view_class["count_seconds_input"].text
-		}
+		self.__current_timer_settings_list[previous_preset_index]["preset_name"] = \
+			self.__timer_config_view_class["preset_name_input"].text
+		self.__current_timer_settings_list[previous_preset_index]["task_minutes"] = \
+			self.__timer_config_view_class["task_minutes_input"].text
+		self.__current_timer_settings_list[previous_preset_index]["short_break_minutes"] = \
+			self.__timer_config_view_class["short_break_minutes_input"].text
+		self.__current_timer_settings_list[previous_preset_index]["long_break_minutes"] = \
+			self.__timer_config_view_class["long_break_minutes_input"].text
+		self.__current_timer_settings_list[previous_preset_index]["loop_times"] = \
+			self.__timer_config_view_class["loop_times_input"].text
+		self.__current_timer_settings_list[previous_preset_index]["will_count"] = \
+			self.__timer_config_view_class["will_count_switch"].value
+		self.__current_timer_settings_list[previous_preset_index]["count_seconds"] = \
+			self.__timer_config_view_class["count_seconds_input"].text
 	
 	def insert_field_text(self) -> None:
 		self.__timer_config_view_class["timer_preset_segmented_control"].selected_index = self.__current_preset_index

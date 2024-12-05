@@ -141,6 +141,7 @@ class PlaylistConfigRadioGroupHandler:
         if updated_playlist_name != "":
             applicable_button = self.__scroll_view[self.__available_playlist[updated_playlist_name]]["select_button"]
             applicable_button.tint_color = self.__appearance_setting.distinguish_select_button_tint_color(True)
+            self.__selected_playlist_name = updated_playlist_name
 
     def switch_selected_playlist_name(self, sender: ui.View) -> None:
         self.unselect_current_playlist()

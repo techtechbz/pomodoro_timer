@@ -37,13 +37,11 @@ class TimerController:
         self.__ux_controller = UXController(task_recorder_config, music_player_config)
 
     def apply_renewal_timer_config(self, timer_config: TimerConfig, alarm_config: AlarmConfig) -> None:
-        self.reset()
         self.__timer.apply_renewal_config(timer_config, alarm_config)
 
     def apply_renewal_config(self, config: Optional[AppConfig]) -> None:
         if config is None:
             return
-        self.reset()
 
         timer_config = config.get_specified_timer_config_preset()
         alarm_config = config.get_alarm_config()
