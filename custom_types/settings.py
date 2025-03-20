@@ -41,9 +41,8 @@ TaskRecorderSettings = TypedDict('TaskRecorderSettings', {
 })
 
 MusicPlayerSettings = TypedDict('MusicPlayerSettings', {
-    "will_play_music": bool,
-    "will_play_music_on_break": bool,
-    "playlist_name": str,
+    "focus_playlist_name": str,
+    "break_playlist_name": str,
     "is_random_mode": bool
 })
 

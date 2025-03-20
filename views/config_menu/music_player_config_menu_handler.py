@@ -76,21 +76,17 @@ class PlaylistConfigRadioGroupAppearanceSettings:
 
 
 class PlaylistConfigRadioGroupHandler:
-    def __init__(self, scroll_view: ui.View, saved_playlist_name: str) -> None:
+    def __init__(self, scroll_view: ui.View) -> None:
         self.__appearance_setting = PlaylistConfigRadioGroupAppearanceSettings()
         self.__scroll_view = scroll_view
         self.__scroll_view.border_color = ColorCode("#000000")
         self.__scroll_view.border_width = 1
         self.__available_playlist = self.get_available_playlist()
-        self.__selected_playlist_name = self.choice_playlist_name(saved_playlist_name)
+        self.__available_playlist_keys = self.__available_playlist.keys()
+        self.__selected_playlist_name = ""
 
     def get_selected_playlist_name(self) -> str:
         return self.__selected_playlist_name
-
-    def choice_playlist_name(self, saved_playlist_name: str) -> str:
-        if saved_playlist_name in self.__available_playlist.keys():
-            return saved_playlist_name
-        return ""
 
     @staticmethod
     def get_playlist_config_item_name(order: int) -> str:
@@ -130,21 +126,21 @@ class PlaylistConfigRadioGroupHandler:
             playlist_config_item_handler.set_select_button_action(self.switch_selected_playlist_name)
             self.__scroll_view.add_subview(playlist_config_item_handler.get_view_instance())
 
-    def unselect_current_playlist(self) -> None:
+    def cancel_previous_selection(self) -> None:
         if self.__selected_playlist_name != "":
             previous_selected_button = \
                 self.__scroll_view[self.__available_playlist[self.__selected_playlist_name]]["select_button"]
             previous_selected_button.tint_color = self.__appearance_setting.distinguish_select_button_tint_color(False)
 
-    def set_selected_playlist_name(self, updated_playlist_name: str) -> None:
-        self.unselect_current_playlist()
-        if updated_playlist_name != "":
-            applicable_button = self.__scroll_view[self.__available_playlist[updated_playlist_name]]["select_button"]
+    def set_selected_playlist_name(self, selected_playlist_name: str) -> None:
+        self.cancel_previous_selection()
+        if selected_playlist_name in self.__available_playlist_keys:
+            applicable_button = self.__scroll_view[self.__available_playlist[selected_playlist_name]]["select_button"]
             applicable_button.tint_color = self.__appearance_setting.distinguish_select_button_tint_color(True)
-            self.__selected_playlist_name = updated_playlist_name
+            self.__selected_playlist_name = selected_playlist_name
 
     def switch_selected_playlist_name(self, sender: ui.View) -> None:
-        self.unselect_current_playlist()
+        self.cancel_previous_selection()
         if self.__selected_playlist_name == sender.superview["playlist_name_label"].text:
             self.__selected_playlist_name = ""
             return
@@ -156,11 +152,14 @@ class MusicPlayerConfigMenuHandler:
     def __init__(self) -> None:
         self.__view_instance = ui.load_view("./pyui/config_menu/music_player_config_menu.pyui")
         self.__current_music_player_settings: Optional[ui.View] = None
-        self.__playlist_config_group_ratio_handler = PlaylistConfigRadioGroupHandler(
-            self.__view_instance["select_playlist_scroll_view"],
-            ""
+        self.__focus_playlist_config_group_ratio_handler = PlaylistConfigRadioGroupHandler(
+            self.__view_instance["select_focus_playlist_scroll_view"]
         )
-        self.__playlist_config_group_ratio_handler.insert_scroll_view_contents()
+        self.__break_playlist_config_group_ratio_handler = PlaylistConfigRadioGroupHandler(
+            self.__view_instance["select_break_playlist_scroll_view"],
+        )
+        self.__focus_playlist_config_group_ratio_handler.insert_scroll_view_contents()
+        self.__break_playlist_config_group_ratio_handler.insert_scroll_view_contents()
 
     def get_view_instance(self) -> ui.View:
         return self.__view_instance
@@ -170,19 +169,18 @@ class MusicPlayerConfigMenuHandler:
         self.insert_field_text()
 
     def write_out_field_inputs(self) -> None:
-        self.__current_music_player_settings["will_play_music"] = self.__view_instance["will_play_music_switch"].value
-        self.__current_music_player_settings["will_play_music_on_break"] = \
-            self.__view_instance["will_play_music_on_break_switch"].value
-        self.__current_music_player_settings["playlist_name"] = \
-            self.__playlist_config_group_ratio_handler.get_selected_playlist_name()
+        self.__current_music_player_settings["focus_playlist_name"] = \
+            self.__focus_playlist_config_group_ratio_handler.get_selected_playlist_name()
+        self.__current_music_player_settings["break_playlist_name"] = \
+            self.__break_playlist_config_group_ratio_handler.get_selected_playlist_name()
         self.__current_music_player_settings["is_random_mode"] = self.__view_instance["is_random_mode_switch"].value
 
     def insert_field_text(self) -> None:
-        self.__view_instance["will_play_music_switch"].value = self.__current_music_player_settings["will_play_music"]
-        self.__view_instance["will_play_music_on_break_switch"].value = \
-            self.__current_music_player_settings["will_play_music_on_break"]
-        self.__playlist_config_group_ratio_handler.set_selected_playlist_name(
-            self.__current_music_player_settings["playlist_name"]
+        self.__focus_playlist_config_group_ratio_handler.set_selected_playlist_name(
+            self.__current_music_player_settings["focus_playlist_name"]
+        )
+        self.__break_playlist_config_group_ratio_handler.set_selected_playlist_name(
+            self.__current_music_player_settings["break_playlist_name"]
         )
         self.__view_instance["is_random_mode_switch"].value = self.__current_music_player_settings["is_random_mode"]
 
@@ -197,9 +195,11 @@ class MusicPlayerConfigMenuHandler:
             subview.touch_enabled = will_enabled
 
     def switch_enabled(self, will_enabled: bool) -> None:
-        scroll_view = self.__view_instance['select_playlist_scroll_view']
-        for subview in scroll_view.subviews:
-            if hasattr(subview, "subviews"):
-                for s in subview.subviews:
-                    self.switch_subview_enabled(s, will_enabled)
-            self.switch_subview_enabled(subview, will_enabled)
+        scroll_view_list = (self.__view_instance['select_focus_playlist_scroll_view'],
+                            self.__view_instance['select_break_playlist_scroll_view'])
+        for scroll_view in scroll_view_list:
+            for subview in scroll_view.subviews:
+                if hasattr(subview, "subviews"):
+                    for s in subview.subviews:
+                        self.switch_subview_enabled(s, will_enabled)
+                self.switch_subview_enabled(subview, will_enabled)

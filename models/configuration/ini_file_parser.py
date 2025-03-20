@@ -70,10 +70,8 @@ class IniFileParser:
 
     def get_saved_music_player_settings(self) -> MusicPlayerSettings:
         return {
-            "will_play_music": self.__configparser.getboolean(self.__music_player_config_section, "will_play_music"),
-            "will_play_music_on_break": self.__configparser.getboolean(self.__music_player_config_section,
-                                                                       "will_play_music_on_break"),
-            "playlist_name": self.__configparser.get(self.__music_player_config_section, "playlist_name"),
+            "focus_playlist_name": self.__configparser.get(self.__music_player_config_section, "focus_playlist_name"),
+            "break_playlist_name": self.__configparser.get(self.__music_player_config_section, "break_playlist_name"),
             "is_random_mode": self.__configparser.getboolean(self.__music_player_config_section, "is_random_mode")}
 
     def get_saved_settings(self) -> AppSettings:
