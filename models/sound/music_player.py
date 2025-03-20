@@ -9,59 +9,79 @@ class MusicPlayer:
 		self.__settings = music_player_config.get_settings()
 		NSBundle.bundleWithPath_('/System/Library/Frameworks/MediaPlayer.framework').load()
 		self.__player = ObjCClass('MPMusicPlayerController').systemMusicPlayer()
-		if self.__settings["playlist_name"] != "":
-			self.prepare_playlist(self.__settings["playlist_name"])
-	
+		self.__max_skip_times = 0
+		self.__focus_playlist = None
+		self.__break_playlist = None
+		self.get_playlists()
+		self.__set_focus_playlist = False
+
 	def apply_renewal_config(self, config: MusicPlayerConfig) -> None:
 		updated_settings = config.get_settings()
-		if updated_settings["playlist_name"] != self.__settings["playlist_name"]:
-			self.prepare_playlist(updated_settings["playlist_name"])
 		if updated_settings != self.__settings:
 			self.__settings = updated_settings
+			self.get_playlists()
 	
 	@staticmethod
-	def get_playlist(playlist_name: str):
+	def find_playlist(playlist_name: str):
 		collections = ObjCClass('MPMediaQuery').playlistsQuery().collections()
 		for playlist in collections:
 			if str(playlist.valueForKey_("name")) == playlist_name:
 				return playlist
+		return None
 	
-	def prepare_playlist(self, playlist_name: str) -> None:
-		playlist = self.get_playlist(playlist_name)
+	def prepare_playlist(self, playlist) -> None:
+		music_num = len(playlist.items())
+		max_skip_num = 30
+		self.__max_skip_times = music_num if music_num <= max_skip_num else max_skip_num
 		self.__player.setQueueWithItemCollection(playlist)
 		self.__player.prepareToPlay()
-		if self.__settings["is_random_mode"]:
-			self.skip_several_music()
+
+	def get_playlists(self):
+		self.__focus_playlist = self.find_playlist(self.__settings["focus_playlist_name"])
+		self.__break_playlist = self.find_playlist(self.__settings["break_playlist_name"])
+		if self.is_found_focus_playlist():
+			self.prepare_playlist(self.__focus_playlist)
+			self.__set_focus_playlist = True
+		elif self.is_found_break_playlist():
+			self.prepare_playlist(self.__break_playlist)
 	
+	def is_found_focus_playlist(self) -> bool:
+		return self.__focus_playlist is not None
+	
+	def is_found_break_playlist(self) -> bool:
+		return self.__break_playlist is not None
+
 	def skip_several_music(self) -> None:
-		for i in range(0, random.randint(1, 20)):
+		for i in range(0, random.randint(1, self.__max_skip_times)):
 			self.__player.skipToNextItem()
-	
+
 	def start_music(self) -> None:
 		if self.__settings["is_random_mode"]:
 			self.skip_several_music()
 		self.__player.play()
 
 	def restart_music(self, on_break: bool) -> None:
-		if (on_break and not self.__settings["will_play_music_on_break"]) or \
-				not (on_break and self.__settings["will_play_music"]):
+		if (on_break and not self.is_found_break_playlist()) or (not on_break and not self.is_found_focus_playlist()):
 			return
 		self.__player.play()
 	
 	def pause_music(self) -> None:
 		self.__player.pause()
 
+	def change_mode(self, on_break: bool) -> None:
+		# プレイリストが同じ場合、再生(または無再生)を続ける
+		if self.__settings["focus_playlist_name"] == self.__settings["break_playlist_name"]:
+			return
+		# 切り替わったモード中に再生するプレイリストが設定されていない場合、再生を止める。
+		if (on_break and not self.is_found_break_playlist()) or (not on_break and not self.is_found_focus_playlist()):
+			self.pause_music()
+			return
+		# 切り替わったモードと、設定中のプレイリストのモードが異なる場合、プレイリストを再設定する
+		if on_break is self.__set_focus_playlist:
+			playlist = self.__break_playlist if on_break else self.__focus_playlist
+			self.prepare_playlist(playlist)
+		# 音楽を再生する
+		self.start_music()
+
 	def stop_music(self) -> None:
 		self.__player.stop()
-
-	def change_to_focus_mode(self) -> None:
-		if self.__settings["will_play_music"]:
-			self.start_music()
-		else:
-			self.pause_music()
-	
-	def change_to_break_mode(self) -> None:
-		if self.__settings["will_play_music_on_break"]:
-			self.start_music()
-		else:
-			self.pause_music()

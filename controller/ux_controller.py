@@ -16,18 +16,18 @@ class UXController:
                              music_player_config: MusicPlayerConfig) -> None:
         self.__task_recorder.apply_task_recorder_config(task_recorder_config)
         self.__music_player.apply_renewal_config(music_player_config)
-
+    
     @staticmethod
     def display_screen_eternally(flag) -> None:
         on_main_thread(console.set_idle_timer_disabled)(flag)
 
     def set_ux_for_focus_mode(self) -> None:
         self.__task_recorder.start_task()
-        self.__music_player.change_to_focus_mode()
+        self.__music_player.change_mode(False)
 
     def set_ux_for_break_mode(self) -> None:
         self.__task_recorder.interrupt_task()
-        self.__music_player.change_to_break_mode()
+        self.__music_player.change_mode(True)
 
     def reset_ux(self) -> None:
         self.__task_recorder.save_task_record()
@@ -36,12 +36,11 @@ class UXController:
     def start_task(self, on_break: bool) -> None:
         self.__task_recorder.start_task()
         self.__music_player.restart_music(on_break)
-        self.display_screen_eternally(True)
 
     def interrupt_task(self) -> None:
         self.__task_recorder.interrupt_task()
         self.__music_player.pause_music()
-        self.display_screen_eternally(False)
 
     def set_recording_task_name(self, task_name: str) -> None:
         self.__task_recorder.set_task_name(task_name)
+
