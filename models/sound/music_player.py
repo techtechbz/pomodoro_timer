@@ -51,6 +51,9 @@ class MusicPlayer:
 	def is_found_break_playlist(self) -> bool:
 		return self.__break_playlist is not None
 
+	def set_playlist_on_mode(self, on_break: bool) -> bool:
+		return (on_break and not self.is_found_break_playlist()) or (not on_break and not self.is_found_focus_playlist())
+	
 	def skip_several_music(self) -> None:
 		for i in range(0, random.randint(1, self.__max_skip_times)):
 			self.__player.skipToNextItem()
@@ -61,7 +64,7 @@ class MusicPlayer:
 		self.__player.play()
 
 	def restart_music(self, on_break: bool) -> None:
-		if (on_break and not self.is_found_break_playlist()) or (not on_break and not self.is_found_focus_playlist()):
+		if self.set_playlist_on_mode(on_break):
 			return
 		self.__player.play()
 	
@@ -73,13 +76,14 @@ class MusicPlayer:
 		if self.__settings["focus_playlist_name"] == self.__settings["break_playlist_name"]:
 			return
 		# 切り替わったモード中に再生するプレイリストが設定されていない場合、再生を止める。
-		if (on_break and not self.is_found_break_playlist()) or (not on_break and not self.is_found_focus_playlist()):
+		if self.set_playlist_on_mode(on_break):
 			self.pause_music()
 			return
 		# 切り替わったモードと、設定中のプレイリストのモードが異なる場合、プレイリストを再設定する
 		if on_break is self.__set_focus_playlist:
 			playlist = self.__break_playlist if on_break else self.__focus_playlist
 			self.prepare_playlist(playlist)
+			self.__set_focus_playlist = not on_break
 		# 音楽を再生する
 		self.start_music()
 
