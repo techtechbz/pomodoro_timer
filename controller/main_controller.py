@@ -53,9 +53,9 @@ class MainController(ui.View):
     
     def keyboard_frame_will_change(self, frame: tuple[float, float, float, float]) -> None:
         padding_of_keyboard = self.height - frame[3]
-        if self.__config_controller is not None:
+        if self.__config_controller:
             self.__config_controller.adjust_layout_for_keyboard_height(padding_of_keyboard)
-        if self.__task_edit_controller is not None:
+        if self.__task_edit_controller:
             self.__task_edit_controller.adjust_layout_for_keyboard_height(padding_of_keyboard)
 
     def get_key_commands(self) -> CommandList:
@@ -81,6 +81,8 @@ class MainController(ui.View):
         del self.__alert_controller
         del self.__config_controller
         del self.__task_edit_controller
+        self.__config_controller = None
+        self.__task_edit_controller = None
 
     def get_open_dialog_method(self, view_instance: ui.View) -> Callable[[], None]:
         def open_dialog() -> None:

@@ -37,7 +37,9 @@ class TimerController:
         self.__ux_controller = UXController(task_recorder_config, music_player_config)
 
     def apply_renewal_timer_config(self, timer_config: TimerConfig, alarm_config: AlarmConfig) -> None:
-        self.__timer.apply_renewal_config(timer_config, alarm_config)
+        if self.__timer.will_update_settings(timer_config):
+            self.__timer.apply_renewal_config(timer_config, alarm_config)
+            self.reset()
 
     def apply_renewal_config(self, config: Optional[AppConfig]) -> None:
         if config is None:
@@ -54,7 +56,7 @@ class TimerController:
             self.__timer_view_manager.set_button_action(self.play_timer, self.clear_timer)
             return
         self.__ux_controller.apply_renewal_config(task_recorder_config, music_player_config)
-        self.__timer.apply_renewal_config(timer_config, alarm_config)
+        self.apply_renewal_timer_config(timer_config, alarm_config)
 
     def set_recording_task_name(self, task_name: str) -> None:
         self.__ux_controller.set_recording_task_name(task_name)
@@ -71,14 +73,17 @@ class TimerController:
 
     def start_timer(self) -> None:
         self.__timer_view_manager.change_play_timer_button_title("STOP")
+        self.__ux_controller.display_screen_eternally(True)
+        if self.__timer.is_on_pomodoro_process():
+            self.__ux_controller.start_task(self.__timer.is_on_break())
         self.__timer.start_timer()
-        self.__ux_controller.start_task(self.__timer.on_break())
 
     def stop_timer(self) -> None:
         if self.__timer is None:
             return
         self.__timer.stop_timer()
         self.__timer_view_manager.change_play_timer_button_title("START")
+        self.__ux_controller.display_screen_eternally(False)
         self.__ux_controller.interrupt_task()
 
     def play_timer(self, _=None) -> None:
@@ -90,8 +95,8 @@ class TimerController:
 
     def reset(self) -> None:
         if self.__timer is not None:
-            self.__timer.clear()
             self.stop_timer()
+            self.__timer.reset()
             self.__appearance_controller.reset_background()
             self.__ux_controller.reset_ux()
 

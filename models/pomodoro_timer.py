@@ -32,18 +32,19 @@ class PomodoroTimer:
     def is_running(self) -> bool:
         return self.__thread is not None
 
-    def on_pomodoro_process(self) -> bool:
+    def is_on_pomodoro_process(self) -> bool:
         return self.__on_pomodoro_process
 
-    def on_break(self) -> bool:
+    def is_on_break(self) -> bool:
         return self.__on_break
+
+    def will_update_settings(self, timer_config) -> bool:
+        return self.__timer_settings != timer_config.get_settings()
 
     def apply_renewal_config(self, timer_config, alarm_config) -> None:
         self.__se.apply_renewal_config(alarm_config)
         updated_timer_settings = timer_config.get_settings()
-        if self.__timer_settings != updated_timer_settings:
-            self.__timer_settings = updated_timer_settings
-            self.clear()
+        self.__timer_settings = updated_timer_settings
 
     def update_remain_loop(self, remain_loop) -> None:
         self.__remain_loop = remain_loop
@@ -128,8 +129,7 @@ class PomodoroTimer:
             del self.__thread
             self.__thread = None
 
-    def clear(self) -> None:
-        self.stop_timer()
+    def reset(self) -> None:
         self.set_time(0, 0)
         self.update_remain_loop(0)
         self.__on_pomodoro_process = False

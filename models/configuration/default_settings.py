@@ -29,9 +29,8 @@ class DefaultSettings:
 			"notice_seconds": 0
 		}
 		self.__default_music_player_settings: Final[MusicPlayerSettings] = {
-			"will_play_music": False,
-			"will_play_music_on_break": False,
-			"playlist_name": "",
+			"focus_playlist_name": "",
+			"break_playlist_name": "",
 			"is_random_mode": False
 		}
 		

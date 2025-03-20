@@ -5,7 +5,7 @@
         "nodes" : [
 
         ],
-        "frame" : "{{16, 160}, {150, 32}}",
+        "frame" : "{{14, 88}, {224, 32}}",
         "class" : "Label",
         "attributes" : {
           "flex" : "",
@@ -14,7 +14,7 @@
           "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
           "class" : "Label",
           "alignment" : "left",
-          "text" : "プレイリスト名",
+          "text" : "プレイリスト名(集中モード)",
           "font_size" : 18,
           "font_name" : "<System>"
         },
@@ -24,77 +24,7 @@
         "nodes" : [
 
         ],
-        "frame" : "{{16, 80}, {150, 32}}",
-        "class" : "Label",
-        "attributes" : {
-          "flex" : "",
-          "font_name" : "<System>",
-          "frame" : "{{85, 224}, {150, 32}}",
-          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
-          "class" : "Label",
-          "alignment" : "left",
-          "text" : "音楽を再生",
-          "name" : "will_play_music_label",
-          "font_size" : 18
-        },
-        "selected" : false
-      },
-      {
-        "nodes" : [
-
-        ],
-        "frame" : "{{16, 120}, {160, 32}}",
-        "class" : "Label",
-        "attributes" : {
-          "flex" : "",
-          "font_name" : "<System>",
-          "frame" : "{{85, 224}, {150, 32}}",
-          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
-          "class" : "Label",
-          "alignment" : "left",
-          "text" : "休憩中に音楽を再生",
-          "name" : "will_play_music_on_break_label",
-          "font_size" : 18
-        },
-        "selected" : false
-      },
-      {
-        "nodes" : [
-
-        ],
-        "frame" : "{{230, 80}, {51, 31}}",
-        "class" : "Switch",
-        "attributes" : {
-          "flex" : "",
-          "frame" : "{{145, 225}, {51, 31}}",
-          "value" : false,
-          "class" : "Switch",
-          "name" : "will_play_music_switch",
-          "uuid" : "0D1DD2A9-A73A-430F-99EA-F97EB36CE5FD"
-        },
-        "selected" : false
-      },
-      {
-        "nodes" : [
-
-        ],
-        "frame" : "{{230, 120}, {51, 31}}",
-        "class" : "Switch",
-        "attributes" : {
-          "flex" : "",
-          "frame" : "{{145, 225}, {51, 31}}",
-          "value" : false,
-          "class" : "Switch",
-          "name" : "will_play_music_on_break_switch",
-          "uuid" : "E8DB1404-6E33-40F9-A973-081987F0FFA1"
-        },
-        "selected" : false
-      },
-      {
-        "nodes" : [
-
-        ],
-        "frame" : "{{16, 360}, {150, 32}}",
+        "frame" : "{{10, 484}, {150, 32}}",
         "class" : "Label",
         "attributes" : {
           "flex" : "",
@@ -113,7 +43,7 @@
         "nodes" : [
 
         ],
-        "frame" : "{{230, 360}, {51, 31}}",
+        "frame" : "{{224, 484}, {51, 31}}",
         "class" : "Switch",
         "attributes" : {
           "uuid" : "E8DB1404-6E33-40F9-A973-081987F0FFA1",
@@ -148,20 +78,55 @@
         "nodes" : [
 
         ],
-        "frame" : "{{10, 200}, {320, 150}}",
+        "frame" : "{{8, 128}, {320, 150}}",
         "class" : "ScrollView",
         "attributes" : {
           "uuid" : "426DA23E-9410-4A43-860E-157253E46B0F",
           "frame" : "{{10, 30}, {320, 320}}",
           "content_height" : 320,
           "class" : "ScrollView",
-          "name" : "select_playlist_scroll_view",
+          "name" : "select_focus_playlist_scroll_view",
           "content_width" : 320
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{16, 286}, {222, 32}}",
+        "class" : "Label",
+        "attributes" : {
+          "flex" : "",
+          "font_name" : "<System>",
+          "frame" : "{{85, 224}, {150, 32}}",
+          "uuid" : "F71D9EC9-E4AF-48D9-B579-42314A56DF4B",
+          "class" : "Label",
+          "alignment" : "left",
+          "text" : "プレイリスト名(休憩モード)",
+          "name" : "focus_mode_playlist_name_label",
+          "font_size" : 18
+        },
+        "selected" : false
+      },
+      {
+        "nodes" : [
+
+        ],
+        "frame" : "{{10, 326}, {320, 150}}",
+        "class" : "ScrollView",
+        "attributes" : {
+          "content_width" : 320,
+          "frame" : "{{10, 30}, {320, 320}}",
+          "content_height" : 320,
+          "class" : "ScrollView",
+          "name" : "select_break_playlist_scroll_view",
+          "uuid" : "426DA23E-9410-4A43-860E-157253E46B0F"
         },
         "selected" : false
       }
     ],
-    "frame" : "{{0, 0}, {340, 440}}",
+    "frame" : "{{0, 0}, {340, 600}}",
     "class" : "View",
     "attributes" : {
       "enabled" : true,
