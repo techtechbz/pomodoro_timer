@@ -9,17 +9,26 @@ class MusicPlayer:
 		self.__settings = music_player_config.get_settings()
 		NSBundle.bundleWithPath_('/System/Library/Frameworks/MediaPlayer.framework').load()
 		self.__player = ObjCClass('MPMusicPlayerController').systemMusicPlayer()
-		self.__max_skip_times = 0
-		self.__focus_playlist = None
-		self.__break_playlist = None
-		self.get_playlists()
 		self.__set_focus_playlist = False
-
+		self.__focus_playlist = self.find_playlist(self.__settings["focus_playlist_name"])
+		self.__break_playlist = self.find_playlist(self.__settings["break_playlist_name"])
+		if self.is_found_focus_playlist():
+			self.prepare_playlist(self.__focus_playlist)
+			self.__set_focus_playlist = True
+		else:
+			self.prepare_playlist(self.__break_playlist)
+	
 	def apply_renewal_config(self, config: MusicPlayerConfig) -> None:
 		updated_settings = config.get_settings()
-		if updated_settings != self.__settings:
-			self.__settings = updated_settings
-			self.get_playlists()
+		if updated_settings["focus_playlist_name"] != self.__settings["focus_playlist_name"]:
+			self.__focus_playlist = self.find_playlist(updated_settings["focus_playlist_name"])
+			if self.__set_focus_playlist:
+				self.prepare_playlist(self.__focus_playlist)
+		if updated_settings["break_playlist_name"] != self.__settings["break_playlist_name"]:
+			self.__break_playlist = self.find_playlist(updated_settings["break_playlist_name"])
+			if not self.__set_focus_playlist:
+				self.prepare_playlist(self.__break_playlist)
+		self.__settings = updated_settings
 	
 	@staticmethod
 	def find_playlist(playlist_name: str):
@@ -30,20 +39,10 @@ class MusicPlayer:
 		return None
 	
 	def prepare_playlist(self, playlist) -> None:
-		music_num = len(playlist.items())
-		max_skip_num = 30
-		self.__max_skip_times = music_num if music_num <= max_skip_num else max_skip_num
+		if playlist is None:
+			return
 		self.__player.setQueueWithItemCollection(playlist)
 		self.__player.prepareToPlay()
-
-	def get_playlists(self):
-		self.__focus_playlist = self.find_playlist(self.__settings["focus_playlist_name"])
-		self.__break_playlist = self.find_playlist(self.__settings["break_playlist_name"])
-		if self.is_found_focus_playlist():
-			self.prepare_playlist(self.__focus_playlist)
-			self.__set_focus_playlist = True
-		elif self.is_found_break_playlist():
-			self.prepare_playlist(self.__break_playlist)
 	
 	def is_found_focus_playlist(self) -> bool:
 		return self.__focus_playlist is not None
@@ -54,19 +53,16 @@ class MusicPlayer:
 	def set_playlist_on_mode(self, on_break: bool) -> bool:
 		return (on_break and not self.is_found_break_playlist()) or (not on_break and not self.is_found_focus_playlist())
 	
-	def skip_several_music(self) -> None:
-		for i in range(0, random.randint(1, self.__max_skip_times)):
-			self.__player.skipToNextItem()
-
 	def start_music(self) -> None:
-		if self.__settings["is_random_mode"]:
-			self.skip_several_music()
+		if self.__settings["is_random_mode"] and self.__player.shuffleMode() == 1:
+			self.__player.shuffle()
 		self.__player.play()
 
 	def restart_music(self, on_break: bool) -> None:
+		# 切り替わったモード中に再生するプレイリストが設定されていない場合、再生しない。
 		if self.set_playlist_on_mode(on_break):
 			return
-		self.__player.play()
+		self.start_music()
 	
 	def pause_music(self) -> None:
 		self.__player.pause()
