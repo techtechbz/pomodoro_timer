@@ -29,8 +29,8 @@ class TaskEditController:
     def sizing(self, frame_width: float, frame_height: float) -> None:
         self.__task_edit_dialog_manager.sizing(frame_width, frame_height)
 
-    def adjust_layout_for_keyboard_height(self, padding_of_keyboard: float) -> None:
-        self.__task_edit_dialog_manager.adjust_layout_for_keyboard_height(padding_of_keyboard)
+    def adjust_layout_for_keyboard_height(self, keyboard_height: float) -> None:
+        self.__task_edit_dialog_manager.adjust_layout_for_keyboard_height(keyboard_height)
 
     def get_displaying_task_view_instance(self) -> ui.View:
         return self.__displaying_task_view_manager.get_view_instance()

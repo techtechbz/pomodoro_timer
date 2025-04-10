@@ -5,12 +5,14 @@ from typing import Final
 class TaskEditDialogViewManager:
 	def __init__(self):
 		self.__view_instance: Final[ui.View] = ui.load_view("./pyui/dialog/task_edit_dialog.pyui")
+		self.__is_moved_up = False
 	
 	def get_view_instance(self) -> ui.View:
 		return self.__view_instance
 
 	def adjust_to_center(self, frame_width: float, frame_height: float) -> None:
-		self.__view_instance.center = (frame_width * 0.5, frame_height * 0.5)
+		if not self.__is_moved_up:
+			self.__view_instance.center = (frame_width * 0.5, frame_height * 0.5)
 
 	def get_scale_factor(self, frame_width: float) -> float:
 		return frame_width / self.__view_instance.width * 0.8
@@ -21,16 +23,15 @@ class TaskEditDialogViewManager:
 		if self.__view_instance.width > frame_width:
 			self.__view_instance.transform = ui.Transform.scale(scale_factor, scale_factor)
 	
-	def adjust_layout_for_keyboard_height(self, padding_of_keyboard: float) -> None:
+	def adjust_layout_for_keyboard_height(self, keyboard_height: float) -> None:
 		frame_width, frame_height = ui.get_screen_size()
-		padding = frame_height / 30
-		view_class_length = self.__view_instance.y + self.__view_instance.height
-		if padding_of_keyboard < view_class_length:
-			vertical_axis = self.__view_instance.y - view_class_length + padding_of_keyboard - padding
-			if vertical_axis < self.__view_instance.y:
-				vertical_axis /= 2.5
-			self.__view_instance.y = vertical_axis
+		bottom_height_of_dialog = self.__view_instance.y + self.__view_instance.height
+		if keyboard_height < bottom_height_of_dialog:
+			apex_height_of_dialog = (keyboard_height - self.__view_instance.height) / 2
+			self.__view_instance.y = apex_height_of_dialog
+			self.__is_moved_up = True
 		else:
+			self.__is_moved_up = False
 			self.adjust_to_center(frame_width, frame_height)
 	
 	def set_previous_task_name(self, task_name: str) -> None:

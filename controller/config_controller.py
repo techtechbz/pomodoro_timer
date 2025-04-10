@@ -32,8 +32,8 @@ class ConfigurationController:
     def sizing(self, frame_width: float, frame_height: float) -> None:
         self.__config_dialog_view_manager.sizing(frame_width, frame_height)
 
-    def adjust_layout_for_keyboard_height(self, padding_of_keyboard: float) -> None:
-        self.__config_dialog_view_manager.adjust_layout_for_keyboard_height(padding_of_keyboard)
+    def adjust_layout_for_keyboard_height(self, keyboard_height: float) -> None:
+        self.__config_dialog_view_manager.adjust_layout_for_keyboard_height(keyboard_height)
 
     def get_saved_config(self) -> Optional[AppConfig]:
         return self.__config

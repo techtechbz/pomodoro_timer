@@ -59,7 +59,7 @@ class PlaylistConfigRadioGroupAppearanceSettings:
     def calculate_scroll_contents_height(self, item_number: int) -> int:
         return self.__item_height * item_number
 
-    def calculate_item_position_vertical_axis(self, order: int) -> int:
+    def calculate_apex_height_of_item_position(self, order: int) -> int:
         return self.__item_height * order
 
     def distinguish_select_button_tint_color(self, is_selected: bool) -> ColorCode:
@@ -118,7 +118,7 @@ class PlaylistConfigRadioGroupHandler:
             playlist_name, item_name = playlist_info
             playlist_config_item_handler = PlaylistConfigItemHandler(playlist_name, item_name)
             height = self.__appearance_setting.return_item_height()
-            y = self.__appearance_setting.calculate_item_position_vertical_axis(i)
+            y = self.__appearance_setting.calculate_apex_height_of_item_position(i)
             default_tint_color = self.__appearance_setting.distinguish_select_button_tint_color(
                 playlist_name == self.__selected_playlist_name)
             background_color = self.__appearance_setting.distinguish_item_background_color(i)

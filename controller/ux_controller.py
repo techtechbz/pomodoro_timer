@@ -43,4 +43,3 @@ class UXController:
 
     def set_recording_task_name(self, task_name: str) -> None:
         self.__task_recorder.set_task_name(task_name)
-

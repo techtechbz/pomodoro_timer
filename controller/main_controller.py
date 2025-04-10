@@ -50,13 +50,13 @@ class MainController(ui.View):
         self.__alert_controller.adjust_position(frame_width, frame_height)
         self.__config_controller.sizing(frame_width, frame_height)
         self.__task_edit_controller.sizing(frame_width, frame_height)
-    
+
     def keyboard_frame_will_change(self, frame: tuple[float, float, float, float]) -> None:
-        padding_of_keyboard = self.height - frame[3]
+        keyboard_height = self.height - frame[3]
         if self.__config_controller:
-            self.__config_controller.adjust_layout_for_keyboard_height(padding_of_keyboard)
+            self.__config_controller.adjust_layout_for_keyboard_height(keyboard_height)
         if self.__task_edit_controller:
-            self.__task_edit_controller.adjust_layout_for_keyboard_height(padding_of_keyboard)
+            self.__task_edit_controller.adjust_layout_for_keyboard_height(keyboard_height)
 
     def get_key_commands(self) -> CommandList:
         return self.__key_command.get_key_commands_list()
