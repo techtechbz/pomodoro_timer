@@ -1,5 +1,6 @@
 from objc_util import ObjCClass, NSBundle
-import random
+from threading import Thread
+from typing import Optional
 
 from models.configuration.config_class.music_player_config import MusicPlayerConfig
 
@@ -12,7 +13,8 @@ class MusicPlayer:
 		self.__set_focus_playlist = False
 		self.__focus_playlist = self.find_playlist(self.__settings["focus_playlist_name"])
 		self.__break_playlist = self.find_playlist(self.__settings["break_playlist_name"])
-		if self.is_found_focus_playlist():
+		self.__thread: Optional[Thread] = None
+		if self.__focus_playlist is not None:
 			self.prepare_playlist(self.__focus_playlist)
 			self.__set_focus_playlist = True
 		else:
@@ -43,26 +45,25 @@ class MusicPlayer:
 			return
 		self.__player.setQueueWithItemCollection(playlist)
 		self.__player.prepareToPlay()
-	
-	def is_found_focus_playlist(self) -> bool:
-		return self.__focus_playlist is not None
-	
-	def is_found_break_playlist(self) -> bool:
-		return self.__break_playlist is not None
+		self.shuffle_music()
 
-	def set_playlist_on_mode(self, on_break: bool) -> bool:
-		return (on_break and not self.is_found_break_playlist()) or (not on_break and not self.is_found_focus_playlist())
+	def is_not_set_playlist_on_mode(self, on_break: bool) -> bool:
+		return (on_break and self.__break_playlist is None) or (not on_break and self.__focus_playlist is None)
 	
-	def start_music(self) -> None:
+	def shuffle_music(self) -> None:
 		if self.__settings["is_random_mode"] and self.__player.shuffleMode() == 1:
 			self.__player.shuffle()
-		self.__player.play()
+
+	def start_music(self) -> None:
+		self.__thread = Thread(target=self.__player.play)
+		self.__thread.start()
 
 	def restart_music(self, on_break: bool) -> None:
 		# 切り替わったモード中に再生するプレイリストが設定されていない場合、再生しない。
-		if self.set_playlist_on_mode(on_break):
+		if self.is_not_set_playlist_on_mode(on_break):
 			return
-		self.start_music()
+		self.shuffle_music()
+		self.__player.play()
 	
 	def pause_music(self) -> None:
 		self.__player.pause()
@@ -72,16 +73,26 @@ class MusicPlayer:
 		if self.__settings["focus_playlist_name"] == self.__settings["break_playlist_name"]:
 			return
 		# 切り替わったモード中に再生するプレイリストが設定されていない場合、再生を止める。
-		if self.set_playlist_on_mode(on_break):
+		if self.is_not_set_playlist_on_mode(on_break):
 			self.pause_music()
 			return
-		# 切り替わったモードと、設定中のプレイリストのモードが異なる場合、プレイリストを再設定する
+		# 設定中のプレイリストが、これから切り替わるモードに合ったのもではないとき、プレイリストを再設定してから並行処理で再生する
 		if on_break is self.__set_focus_playlist:
+			self.stop_music()
 			playlist = self.__break_playlist if on_break else self.__focus_playlist
 			self.prepare_playlist(playlist)
+			self.start_music()
 			self.__set_focus_playlist = not on_break
-		# 音楽を再生する
-		self.start_music()
+		# 設定中のプレイリストが、これから切り替わるモードに合っているとき、並行処理を行わず再生する
+		else:
+			self.__player.play()
+
+	def reset_thread(self) -> None:
+		if self.__thread is not None:
+			self.__thread.join()
+			del self.__thread
+			self.__thread = None
 
 	def stop_music(self) -> None:
 		self.__player.stop()
+		self.reset_thread()
