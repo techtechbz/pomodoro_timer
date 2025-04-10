@@ -10,6 +10,7 @@ from models.configuration.config_class.alarm_config import AlarmConfig
 class AlarmName(Enum):
 	デフォルト = 0
 	ピアノ = 1
+	西鉄 = 2
 	
 	@classmethod
 	def get_alarm_list(cls):
@@ -40,6 +41,8 @@ class TimerSoundEffect:
 		play_effect('piano:D3')
 		sleep(0.08)
 		play_effect('piano:F3#')
+		sleep(0.08)
+		play_effect('piano:A3')
 
 	@staticmethod
 	def play_piano_alarm() -> None:
@@ -51,12 +54,34 @@ class TimerSoundEffect:
 		sleep(0.15)
 		play_effect('piano:F4#')
 
+	@staticmethod
+	def play_nishitetsu_alarm() -> None:
+		play_effect('piano:G3')
+		sleep(0.01)
+		play_effect('piano:B3', pitch=2)
+		sleep(0.01)
+		play_effect('piano:D4', pitch=2)
+		sleep(0.01)
+		play_effect('piano:G4', pitch=2)
+		sleep(0.5)
+		play_effect('piano:D4')
+		sleep(0.25)
+		play_effect('piano:G4')
+		sleep(0.25)
+		play_effect('piano:A3', pitch=2)
+		sleep(0.25)
+		play_effect('piano:D4', pitch=2)
+		sleep(0.25)
+		play_effect('piano:B3', pitch=2)
+	
 	def get_alarm(self) -> Callable[[], None]:
 		alarm_name = AlarmName(self.__alarm_index)
 		if alarm_name == AlarmName.デフォルト:
 			return self.play_default_alarm
-		else:
+		elif alarm_name == AlarmName.ピアノ:
 			return self.play_piano_alarm
+		else:
+			return self.play_nishitetsu_alarm
 
 	def play_thread(self):
 		self.__thread.start()

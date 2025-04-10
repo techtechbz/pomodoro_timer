@@ -1,4 +1,3 @@
-import threading
 import time
 from threading import Thread
 from typing import Optional
@@ -27,7 +26,7 @@ class PomodoroTimer:
         self.__is_called_stopping_signal = False
         self.__on_pomodoro_process: bool = False
         self.__on_break: bool = True
-        self.__thread: Optional[threading.Thread] = None
+        self.__thread: Optional[Thread] = None
 
     def is_running(self) -> bool:
         return self.__thread is not None

@@ -146,11 +146,11 @@ class ConfigDialogViewManager:
         self.__scale_factor = self.get_scale_factor(frame_height)
         self.__view_instance.transform = ui.Transform.scale(self.__scale_factor, self.__scale_factor)
 
-    def adjust_layout_for_keyboard_height(self, padding_of_keyboard: float) -> None:
-        scroll_menu_bottom = self.__view_instance.y + self.__view_instance["config_menu_scroll"].y +\
-                             self.__view_instance["config_menu_scroll"].height
-        if padding_of_keyboard < scroll_menu_bottom:
-            extension_of_contents = (scroll_menu_bottom - padding_of_keyboard) * math.sqrt(self.__scale_factor)
+    def adjust_layout_for_keyboard_height(self, keyboard_height: float) -> None:
+        bottom_height_of_scroll_menu = self.__view_instance.y + self.__view_instance["config_menu_scroll"].y +\
+                                       self.__view_instance["config_menu_scroll"].height
+        if keyboard_height < bottom_height_of_scroll_menu:
+            extension_of_contents = (bottom_height_of_scroll_menu - keyboard_height) * math.sqrt(self.__scale_factor)
         else:
             extension_of_contents = 0
         self.__view_instance["config_menu_scroll"].content_size = \
